@@ -27,9 +27,12 @@ export class Level extends Phaser.Scene {
       this.load.image('bg1', './assets/mountain.png');
       this.load.image('bg2', './assets/trees.png');
       this.load.image('bg3', './assets/snowdunes.png');
+      this.load.spritesheet('play', './assets/play.png', { frameWidth: 400, frameHeight: 170});
+      this.load.image('artboard', './assets/artboard.png');
     }
   
     create() {
+      // gameState.playButton.anims.play('play', true);
       gameState.active = true
   
       gameState.bgColor = this.add.rectangle(0, 0, config.width, config.height, 0x00ffbb).setOrigin(0, 0);

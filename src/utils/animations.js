@@ -26,5 +26,12 @@ export const createAnimations = (context) => {
       frames: context.anims.generateFrameNumbers('guy', { start: 0, end: 3 }),
       frameRate: 10,
       repeat: -1
+    });
+
+    context.anims.create({
+      key: 'playbutton',
+      frames: context.anims.generateFrameNumbers('play', { start: 0, end: 2 }),
+      frameRate: 10,
+      repeat: -1
     })
   }

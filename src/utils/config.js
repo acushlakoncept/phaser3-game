@@ -7,7 +7,7 @@ export const config = {
   width: 500,
   height: 600,
   fps: { target: 60 },
-  backgroundColor: "b9eaff",
+  backgroundColor: "fff",
   physics: {
     default: "arcade",
     arcade: {
