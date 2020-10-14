@@ -1,5 +1,6 @@
 import { Level1 } from "../scenes/level-one";
 import { Level2 } from "../scenes/level-two";
+import { Intro } from "../scenes/introScene";
 
 export const config = {
   type: Phaser.AUTO,
@@ -14,5 +15,5 @@ export const config = {
       enableBody: true
     }
   },
-  scene: [Level1, Level2]
+  scene: [Intro, Level1, Level2]
 };
