@@ -17,12 +17,7 @@ export class Level extends Phaser.Scene {
       this.load.image('platform', './assets/platform.png');
       this.load.image('snowflake', './assets/snowflake.png');
       this.load.image('door', './assets/door.png');
-      this.load.spritesheet('campfire', 'https://content.codecademy.com/courses/learn-phaser/Codey%20Tundra/campfire.png',
-        { frameWidth: 32, frameHeight: 32});
-      this.load.spritesheet('codey', './assets/codey.png', { frameWidth: 72, frameHeight: 90})
-
       this.load.spritesheet('guy', './assets/guy.png', { frameWidth: 16, frameHeight: 24})
-  
       this.load.image('bg1', './assets/mountain.png');
       this.load.image('bg2', './assets/trees.png');
       this.load.image('bg3', './assets/snowdunes.png');
@@ -34,9 +29,7 @@ export class Level extends Phaser.Scene {
       gameState.bgColor = this.add.rectangle(0, 0, config.width, config.height, 0x00ffbb).setOrigin(0, 0);
       this.createStars();
       this.createParallaxBackgrounds();
-  
-    //   gameState.player = this.physics.add.sprite(125, 110, 'codey').setScale(.5);
-    //   gameState.door = this.physics.add.sprite(125, 110, 'door').setScale(.4);
+
       gameState.player = this.physics.add.sprite(80, 110, 'guy').setScale(1.8);
       gameState.platforms = this.physics.add.staticGroup();
   
@@ -53,7 +46,6 @@ export class Level extends Phaser.Scene {
       gameState.player.setCollideWorldBounds(true);
   
       this.physics.add.collider(gameState.player, gameState.platforms);
-    //   this.physics.add.collider(gameState.door, gameState.platforms);
       this.physics.add.collider(gameState.goal, gameState.platforms);
   
       gameState.cursors = this.input.keyboard.createCursorKeys();
@@ -61,8 +53,6 @@ export class Level extends Phaser.Scene {
     }
   
     createPlatform(xIndex, yIndex) {
-      // Creates a platform evenly spaced along the two indices.
-      // If either is not a number it won't make a platform
         if (typeof yIndex === 'number' && typeof xIndex === 'number') {
           gameState.platforms.create((220 * xIndex),  yIndex * 70, 'platform').setOrigin(0, 0.5).refreshBody();
         }
@@ -114,13 +104,6 @@ export class Level extends Phaser.Scene {
         frameRate: 10,
         repeat: -1
       })
-  
-    //   this.anims.create({
-    //     key: 'fire',
-    //     frames: this.anims.generateFrameNumbers('campfire'),
-    //     frameRate: 10,
-    //     repeat: -1
-    //   })
     }
   
     createParallaxBackgrounds() {
@@ -167,7 +150,6 @@ export class Level extends Phaser.Scene {
   
     update() {
       if(gameState.active){
-        // gameState.goal.anims.play('door', true);
         if (gameState.cursors.right.isDown) {
           gameState.player.setVelocityX(gameState.speed);
           gameState.player.anims.play('right', true);
