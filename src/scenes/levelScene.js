@@ -35,9 +35,9 @@ export class Level extends Phaser.Scene {
       this.createStars();
       this.createParallaxBackgrounds();
   
-      gameState.player = this.physics.add.sprite(125, 110, 'codey').setScale(.5);
+    //   gameState.player = this.physics.add.sprite(125, 110, 'codey').setScale(.5);
     //   gameState.door = this.physics.add.sprite(125, 110, 'door').setScale(.4);
-      gameState.player2 = this.physics.add.sprite(80, 110, 'guy').setScale(1.8);
+      gameState.player = this.physics.add.sprite(80, 110, 'guy').setScale(1.8);
       gameState.platforms = this.physics.add.staticGroup();
   
       this.createAnimations();
@@ -53,8 +53,7 @@ export class Level extends Phaser.Scene {
       gameState.player.setCollideWorldBounds(true);
   
       this.physics.add.collider(gameState.player, gameState.platforms);
-      this.physics.add.collider(gameState.player2, gameState.platforms);
-      this.physics.add.collider(gameState.door, gameState.platforms);
+    //   this.physics.add.collider(gameState.door, gameState.platforms);
       this.physics.add.collider(gameState.goal, gameState.platforms);
   
       gameState.cursors = this.input.keyboard.createCursorKeys();
@@ -87,12 +86,6 @@ export class Level extends Phaser.Scene {
     }
   
     createAnimations() {
-      this.anims.create({
-        key: 'run',
-        frames: this.anims.generateFrameNumbers('codey', { start: 0, end: 3 }),
-        frameRate: 10,
-        repeat: -1
-      });
 
       this.anims.create({
         key: 'right',
@@ -107,13 +100,6 @@ export class Level extends Phaser.Scene {
         frameRate: 10,
         repeat: -1
       });
-  
-    //   this.anims.create({
-    //     key: 'idle',
-    //     frames: this.anims.generateFrameNumbers('codey', { start: 4, end: 5 }),
-    //     frameRate: 10,
-    //     repeat: -1
-    //   });
 
       this.anims.create({
         key: 'idle',
@@ -129,12 +115,12 @@ export class Level extends Phaser.Scene {
         repeat: -1
       })
   
-      this.anims.create({
-        key: 'fire',
-        frames: this.anims.generateFrameNumbers('campfire'),
-        frameRate: 10,
-        repeat: -1
-      })
+    //   this.anims.create({
+    //     key: 'fire',
+    //     frames: this.anims.generateFrameNumbers('campfire'),
+    //     frameRate: 10,
+    //     repeat: -1
+    //   })
     }
   
     createParallaxBackgrounds() {
@@ -164,8 +150,8 @@ export class Level extends Phaser.Scene {
         this.createPlatform(xIndex, yIndex);
       }
   
-      // Create the campfire at the end of the level
-      gameState.goal = this.physics.add.sprite(gameState.width - 40, 100, 'campfire');
+      // Create the door at the end of the level
+      gameState.goal = this.physics.add.sprite(gameState.width - 40, 100, 'door');
   
       this.physics.add.overlap(gameState.player, gameState.goal, function() {
         this.cameras.main.fade(800, 0, 0, 0, false, function(camera, progress) {
@@ -181,31 +167,25 @@ export class Level extends Phaser.Scene {
   
     update() {
       if(gameState.active){
-        gameState.goal.anims.play('fire', true);
+        // gameState.goal.anims.play('door', true);
         if (gameState.cursors.right.isDown) {
-        //   gameState.player.flipX = false;
-          gameState.player2.setVelocityX(gameState.speed);
-          gameState.player2.anims.play('right', true);
+          gameState.player.setVelocityX(gameState.speed);
+          gameState.player.anims.play('right', true);
         } else if (gameState.cursors.left.isDown) {
-        //   gameState.player.flipX = true;
-        //   gameState.player.setVelocityX(-gameState.speed);
-          gameState.player2.setVelocityX(-gameState.speed);
-        //   gameState.player.anims.play('run', true);
-          gameState.player2.anims.play('left', true);
+          gameState.player.setVelocityX(-gameState.speed);
+          gameState.player.anims.play('left', true);
         } else {
-          gameState.player2.setVelocityX(0);
-        //   gameState.player2.setVelocityX(0);
-          gameState.player2.anims.play('idle', true);
-        //   gameState.player2.anims.play('idle', true);
+          gameState.player.setVelocityX(0);
+          gameState.player.anims.play('idle', true);
         }
   
-        if (Phaser.Input.Keyboard.JustDown(gameState.cursors.space) && gameState.player2.body.touching.down) {
-          gameState.player2.anims.play('jump', true);
-          gameState.player2.setVelocityY(-500);
+        if (Phaser.Input.Keyboard.JustDown(gameState.cursors.space) && gameState.player.body.touching.down) {
+          gameState.player.anims.play('jump', true);
+          gameState.player.setVelocityY(-500);
         }
   
-        if (!gameState.player2.body.touching.down){
-          gameState.player2.anims.play('jump', true);
+        if (!gameState.player.body.touching.down){
+          gameState.player.anims.play('jump', true);
         }
   
         if (gameState.player.y > gameState.bg3.height) {
