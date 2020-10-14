@@ -14,15 +14,18 @@ export class Level extends Phaser.Scene {
     }
   
     preload() {
-      this.load.image('platform', 'https://content.codecademy.com/courses/learn-phaser/Codey%20Tundra/platform.png');
-      this.load.image('snowflake', 'https://content.codecademy.com/courses/learn-phaser/Codey%20Tundra/snowflake.png');
+      this.load.image('platform', './assets/platform.png');
+      this.load.image('snowflake', './assets/snowflake.png');
+      this.load.image('door', './assets/door.png');
       this.load.spritesheet('campfire', 'https://content.codecademy.com/courses/learn-phaser/Codey%20Tundra/campfire.png',
         { frameWidth: 32, frameHeight: 32});
-      this.load.spritesheet('codey', 'https://content.codecademy.com/courses/learn-phaser/Codey%20Tundra/codey.png', { frameWidth: 72, frameHeight: 90})
+      this.load.spritesheet('codey', './assets/codey.png', { frameWidth: 72, frameHeight: 90})
+
+      this.load.spritesheet('guy', './assets/guy.png', { frameWidth: 16, frameHeight: 24})
   
-      this.load.image('bg1', 'https://content.codecademy.com/courses/learn-phaser/Codey%20Tundra/mountain.png');
-      this.load.image('bg2', 'https://content.codecademy.com/courses/learn-phaser/Codey%20Tundra/trees.png');
-      this.load.image('bg3', 'https://content.codecademy.com/courses/learn-phaser/Codey%20Tundra/snowdunes.png');
+      this.load.image('bg1', './assets/mountain.png');
+      this.load.image('bg2', './assets/trees.png');
+      this.load.image('bg3', './assets/snowdunes.png');
     }
   
     create() {
@@ -33,6 +36,8 @@ export class Level extends Phaser.Scene {
       this.createParallaxBackgrounds();
   
       gameState.player = this.physics.add.sprite(125, 110, 'codey').setScale(.5);
+    //   gameState.door = this.physics.add.sprite(125, 110, 'door').setScale(.4);
+      gameState.player2 = this.physics.add.sprite(80, 110, 'guy').setScale(1.8);
       gameState.platforms = this.physics.add.staticGroup();
   
       this.createAnimations();
@@ -48,6 +53,8 @@ export class Level extends Phaser.Scene {
       gameState.player.setCollideWorldBounds(true);
   
       this.physics.add.collider(gameState.player, gameState.platforms);
+      this.physics.add.collider(gameState.player2, gameState.platforms);
+      this.physics.add.collider(gameState.door, gameState.platforms);
       this.physics.add.collider(gameState.goal, gameState.platforms);
   
       gameState.cursors = this.input.keyboard.createCursorKeys();
@@ -86,17 +93,38 @@ export class Level extends Phaser.Scene {
         frameRate: 10,
         repeat: -1
       });
+
+      this.anims.create({
+        key: 'right',
+        frames: this.anims.generateFrameNumbers('guy', { start: 4, end: 7 }),
+        frameRate: 10,
+        repeat: -1
+      });
+
+      this.anims.create({
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('guy', { start: 8, end: 11 }),
+        frameRate: 10,
+        repeat: -1
+      });
   
+    //   this.anims.create({
+    //     key: 'idle',
+    //     frames: this.anims.generateFrameNumbers('codey', { start: 4, end: 5 }),
+    //     frameRate: 10,
+    //     repeat: -1
+    //   });
+
       this.anims.create({
         key: 'idle',
-        frames: this.anims.generateFrameNumbers('codey', { start: 4, end: 5 }),
+        frames: this.anims.generateFrameNumbers('guy', { start: 0, end: 3 }),
         frameRate: 10,
         repeat: -1
       });
   
       this.anims.create({
         key: 'jump',
-        frames: this.anims.generateFrameNumbers('codey', { start: 2, end: 3 }),
+        frames: this.anims.generateFrameNumbers('guy', { start: 0, end: 3 }),
         frameRate: 10,
         repeat: -1
       })
@@ -155,25 +183,29 @@ export class Level extends Phaser.Scene {
       if(gameState.active){
         gameState.goal.anims.play('fire', true);
         if (gameState.cursors.right.isDown) {
-          gameState.player.flipX = false;
-          gameState.player.setVelocityX(gameState.speed);
-          gameState.player.anims.play('run', true);
+        //   gameState.player.flipX = false;
+          gameState.player2.setVelocityX(gameState.speed);
+          gameState.player2.anims.play('right', true);
         } else if (gameState.cursors.left.isDown) {
-          gameState.player.flipX = true;
-          gameState.player.setVelocityX(-gameState.speed);
-          gameState.player.anims.play('run', true);
+        //   gameState.player.flipX = true;
+        //   gameState.player.setVelocityX(-gameState.speed);
+          gameState.player2.setVelocityX(-gameState.speed);
+        //   gameState.player.anims.play('run', true);
+          gameState.player2.anims.play('left', true);
         } else {
-          gameState.player.setVelocityX(0);
-          gameState.player.anims.play('idle', true);
+          gameState.player2.setVelocityX(0);
+        //   gameState.player2.setVelocityX(0);
+          gameState.player2.anims.play('idle', true);
+        //   gameState.player2.anims.play('idle', true);
         }
   
-        if (Phaser.Input.Keyboard.JustDown(gameState.cursors.space) && gameState.player.body.touching.down) {
-          gameState.player.anims.play('jump', true);
-          gameState.player.setVelocityY(-500);
+        if (Phaser.Input.Keyboard.JustDown(gameState.cursors.space) && gameState.player2.body.touching.down) {
+          gameState.player2.anims.play('jump', true);
+          gameState.player2.setVelocityY(-500);
         }
   
-        if (!gameState.player.body.touching.down){
-          gameState.player.anims.play('jump', true);
+        if (!gameState.player2.body.touching.down){
+          gameState.player2.anims.play('jump', true);
         }
   
         if (gameState.player.y > gameState.bg3.height) {
