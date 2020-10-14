@@ -34,7 +34,6 @@ export class Intro extends Level {
         })
 
         gameState.credits.on('pointerup', () => {
-            console.log('clicked')
             this.scene.stop(this.levelKey);
             this.scene.start('Credits');
         })

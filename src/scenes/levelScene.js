@@ -11,6 +11,7 @@ export class Level extends Phaser.Scene {
       super(key);
       this.levelKey = key
       this.nextLevel = {
+        'Credits': 'Intro',
         'Intro': 'Level1',
         'Level1': 'Level2',
         'Level2': 'Level3',
@@ -32,6 +33,7 @@ export class Level extends Phaser.Scene {
       this.load.image('options', './assets/options.png');
       this.load.image('leaderboard', './assets/leaderboard.png');
       this.load.image('credits', './assets/credits.png');
+      this.load.image('back', './assets/back.png');
       this.load.audio('mouseover', './assets/mouseover.wav');
     }
   
