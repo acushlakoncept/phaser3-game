@@ -31,6 +31,8 @@ export class Level extends Phaser.Scene {
       this.load.image('artboard', './assets/artboard.png');
       this.load.image('options', './assets/options.png');
       this.load.image('leaderboard', './assets/leaderboard.png');
+      this.load.image('credits', './assets/credits.png');
+      this.load.audio('mouseover', './assets/mouseover.wav');
     }
   
     create() {
