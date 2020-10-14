@@ -2,6 +2,7 @@ import { gameState } from '../utils/gameState';
 import { config } from '../utils/config';
 import { setWeather } from '../utils/weather';
 import { createStars } from '../utils/stars';
+import { createParallaxBackgrounds } from '../utils/backgrounds';
 
 export class Level extends Phaser.Scene {
     constructor(key) {
@@ -30,7 +31,7 @@ export class Level extends Phaser.Scene {
   
       gameState.bgColor = this.add.rectangle(0, 0, config.width, config.height, 0x00ffbb).setOrigin(0, 0);
       createStars(gameState, this);
-      this.createParallaxBackgrounds();
+      createParallaxBackgrounds(gameState, this);
 
       gameState.player = this.physics.add.sprite(80, 110, 'guy').setScale(1.8);
       gameState.platforms = this.physics.add.staticGroup();
@@ -106,28 +107,6 @@ export class Level extends Phaser.Scene {
         frameRate: 10,
         repeat: -1
       })
-    }
-  
-    createParallaxBackgrounds() {
-      gameState.bg1 = this.add.image(0, 0, 'bg1');
-      gameState.bg2 = this.add.image(0, 0, 'bg2');
-      gameState.bg3 = this.add.image(0, 0, 'bg3');
-  
-      gameState.bg1.setOrigin(0, 0);
-      gameState.bg2.setOrigin(0, 0);
-      gameState.bg3.setOrigin(0, 0);
-  
-      const game_width = parseFloat(gameState.bg3.getBounds().width)
-      gameState.width = game_width;
-      const window_width = config.width
-  
-      const bg1_width = gameState.bg1.getBounds().width
-      const bg2_width = gameState.bg2.getBounds().width
-      const bg3_width = gameState.bg3.getBounds().width
-  
-      gameState.bgColor .setScrollFactor(0);
-      gameState.bg1.setScrollFactor((bg1_width - window_width) / (game_width - window_width));
-      gameState.bg2.setScrollFactor((bg2_width - window_width) / (game_width - window_width));
     }
   
     levelSetup() {
