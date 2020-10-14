@@ -1,10 +1,10 @@
 import { gameState } from '../utils/gameState';
 import { config } from '../utils/config';
-import { setWeather } from '../utils/weather';
 import { createStars } from '../utils/stars';
 import { createParallaxBackgrounds } from '../utils/backgrounds';
 import { createSnow } from '../utils/snow';
 import { createAnimations } from '../utils/animations';
+import { levelSetup } from '../utils/levelSetups'; 
 
 export class Level extends Phaser.Scene {
     constructor(key) {
@@ -42,7 +42,7 @@ export class Level extends Phaser.Scene {
   
       createSnow(gameState, this);
   
-      this.levelSetup();
+      levelSetup(this, gameState);
   
       this.cameras.main.setBounds(0, 0, gameState.bg3.width, gameState.bg3.height);
       this.physics.world.setBounds(0, 0, gameState.width, gameState.bg3.height + gameState.player.height);
@@ -55,31 +55,6 @@ export class Level extends Phaser.Scene {
   
       gameState.cursors = this.input.keyboard.createCursorKeys();
   
-    }
-  
-    createPlatform(xIndex, yIndex) {
-        if (typeof yIndex === 'number' && typeof xIndex === 'number') {
-          gameState.platforms.create((220 * xIndex),  yIndex * 70, 'platform').setOrigin(0, 0.5).refreshBody();
-        }
-    }
-  
-    levelSetup() {
-      for (const [xIndex, yIndex] of this.heights.entries()) {
-        this.createPlatform(xIndex, yIndex);
-      }
- 
-      gameState.goal = this.physics.add.sprite(gameState.width - 20, 120, 'door').setScale(.4);
-  
-      this.physics.add.overlap(gameState.player, gameState.goal, function() {
-        this.cameras.main.fade(800, 0, 0, 0, false, function(camera, progress) {
-          if (progress > .9) {
-            this.scene.stop(this.levelKey);
-            this.scene.start(this.nextLevel[this.levelKey]);
-          }
-        });
-      }, null, this);
-  
-      setWeather(this.weather, gameState);
     }
   
     update() {
