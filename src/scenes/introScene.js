@@ -14,7 +14,6 @@ export class Intro extends Level {
         gameState.leaderboard = this.add.image(250, 300, 'leaderboard').setScale(.4);
         gameState.playButton = this.add.sprite(250, 480, 'play').setScale(.4);
         gameState.credits = this.add.sprite(250, 390, 'credits').setScale(.4);
-        // gameState.mouseOverSound = this.sound.add('mouseover');
 
         
         gameState.Title1 = this.add.text(220, 60, 'THE', { fontSize: '25px', fill: '#000000' });
@@ -32,6 +31,12 @@ export class Intro extends Level {
         gameState.playButton.on('pointerup', () => {
             this.scene.stop(this.levelKey);
             this.scene.start(this.nextLevel[this.levelKey]);
+        })
+
+        gameState.credits.on('pointerup', () => {
+            console.log('clicked')
+            this.scene.stop(this.levelKey);
+            this.scene.start('Credits');
         })
 
         createAnimations(this)
