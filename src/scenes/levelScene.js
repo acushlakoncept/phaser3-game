@@ -4,6 +4,7 @@ import { setWeather } from '../utils/weather';
 import { createStars } from '../utils/stars';
 import { createParallaxBackgrounds } from '../utils/backgrounds';
 import { createSnow } from '../utils/snow';
+import { createAnimations } from '../utils/animations';
 
 export class Level extends Phaser.Scene {
     constructor(key) {
@@ -37,7 +38,7 @@ export class Level extends Phaser.Scene {
       gameState.player = this.physics.add.sprite(80, 110, 'guy').setScale(1.8);
       gameState.platforms = this.physics.add.staticGroup();
   
-      this.createAnimations();
+      createAnimations(this);
   
       createSnow(gameState, this);
   
@@ -60,38 +61,6 @@ export class Level extends Phaser.Scene {
         if (typeof yIndex === 'number' && typeof xIndex === 'number') {
           gameState.platforms.create((220 * xIndex),  yIndex * 70, 'platform').setOrigin(0, 0.5).refreshBody();
         }
-    }
-
-  
-    createAnimations() {
-
-      this.anims.create({
-        key: 'right',
-        frames: this.anims.generateFrameNumbers('guy', { start: 4, end: 7 }),
-        frameRate: 10,
-        repeat: -1
-      });
-
-      this.anims.create({
-        key: 'left',
-        frames: this.anims.generateFrameNumbers('guy', { start: 8, end: 11 }),
-        frameRate: 10,
-        repeat: -1
-      });
-
-      this.anims.create({
-        key: 'idle',
-        frames: this.anims.generateFrameNumbers('guy', { start: 0, end: 3 }),
-        frameRate: 10,
-        repeat: -1
-      });
-  
-      this.anims.create({
-        key: 'jump',
-        frames: this.anims.generateFrameNumbers('guy', { start: 0, end: 3 }),
-        frameRate: 10,
-        repeat: -1
-      })
     }
   
     levelSetup() {
