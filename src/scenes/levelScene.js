@@ -1,6 +1,7 @@
 import { gameState } from '../utils/gameState';
 import { config } from '../utils/config';
 import { setWeather } from '../utils/weather';
+import { createStars } from '../utils/stars';
 
 export class Level extends Phaser.Scene {
     constructor(key) {
@@ -28,7 +29,7 @@ export class Level extends Phaser.Scene {
       gameState.active = true
   
       gameState.bgColor = this.add.rectangle(0, 0, config.width, config.height, 0x00ffbb).setOrigin(0, 0);
-      this.createStars();
+      createStars(gameState, this);
       this.createParallaxBackgrounds();
 
       gameState.player = this.physics.add.sprite(80, 110, 'guy').setScale(1.8);
@@ -177,24 +178,6 @@ export class Level extends Phaser.Scene {
             }
           });
         }
-      }
-    }
-    createStars() {
-      gameState.stars = [];
-      function getStarPoints() {
-        const color = 0xffffff;
-        return {
-          x: Math.floor(Math.random() * 900),
-          y: Math.floor(Math.random() * config.height * .5),
-          radius: Math.floor(Math.random() * 3),
-          color,
-        }
-      }
-      for (let i = 0; i < 200; i++) {
-        const { x, y, radius, color} = getStarPoints();
-        const star = this.add.circle(x, y, radius, color)
-        star.setScrollFactor(Math.random() * .1);
-        gameState.stars.push(star)
       }
     }
   }
