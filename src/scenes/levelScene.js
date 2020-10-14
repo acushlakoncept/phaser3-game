@@ -3,6 +3,7 @@ import { config } from '../utils/config';
 import { setWeather } from '../utils/weather';
 import { createStars } from '../utils/stars';
 import { createParallaxBackgrounds } from '../utils/backgrounds';
+import { createSnow } from '../utils/snow';
 
 export class Level extends Phaser.Scene {
     constructor(key) {
@@ -38,7 +39,7 @@ export class Level extends Phaser.Scene {
   
       this.createAnimations();
   
-      this.createSnow();
+      createSnow(gameState, this);
   
       this.levelSetup();
   
@@ -60,23 +61,7 @@ export class Level extends Phaser.Scene {
           gameState.platforms.create((220 * xIndex),  yIndex * 70, 'platform').setOrigin(0, 0.5).refreshBody();
         }
     }
-  
-    createSnow() {
-      gameState.particles = this.add.particles('snowflake');
-  
-      gameState.emitter = gameState.particles.createEmitter({
-        x: {min: 0, max: config.width * 2 },
-        y: -5,
-        lifespan: 2000,
-        speedX: { min:-5, max: -200 },
-        speedY: { min: 200, max: 400 },
-        scale: { start: 0.6, end: 0 },
-        quantity: 10,
-        blendMode: 'ADD'
-      })
-  
-      gameState.emitter.setScrollFactor(0);
-    }
+
   
     createAnimations() {
 
