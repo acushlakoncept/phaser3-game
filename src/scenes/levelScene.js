@@ -35,6 +35,7 @@ export class Level extends Phaser.Scene {
       this.load.image('leaderboard', './assets/leaderboard.png');
       this.load.image('credits', './assets/credits.png');
       this.load.image('back', './assets/back.png');
+      this.load.image('star', './assets/star.png');
       this.load.audio('mouseover', './assets/mouseover.wav');
       this.load.spritesheet('snowman', './assets/snowman.png', { frameWidth: 50, frameHeight: 70 });
     }
@@ -50,11 +51,24 @@ export class Level extends Phaser.Scene {
       
       gameState.platforms = this.physics.add.staticGroup();
 
-     
+      gameState.starCoins = this.physics.add.group({
+        key: "star",
+        repeat: 15,
+        allowGravity: false
+    });
+
+      gameState.starCoins.children.iterate((child) => {
+        for (let i = 0; i < 15; i++){
+          let xPos = Phaser.Math.Between(100, 1800);
+          let yPos = Phaser.Math.Between(80, 200);
+          
+          child.x = xPos;
+          child.y = yPos;
+          child.setOrigin(0,0);
+        }
+      });
 
      
-      
-  
       createAnimations(this);
   
       createSnow(gameState, this);
@@ -86,6 +100,15 @@ export class Level extends Phaser.Scene {
         this.physics.add.collider(gameState.snowman3, gameState.platforms);
         animateSnowman(gameState.snowman3, this, 380, 1800)
       }
+
+
+    //   this.physics.add.overlap(
+    //     gameState.player,
+    //     gameState.coins,
+    //     function(){
+
+    //     }
+    // );
      
       gameState.cursors = this.input.keyboard.createCursorKeys();
   
@@ -122,4 +145,28 @@ export class Level extends Phaser.Scene {
         }
       }
     }
+
+    collectStar(player, star) {
+      star.disableBody(true, true);
+
+      // score += 10;
+      // scoreText.setText("Score: " + score);
+
+      // if (stars.countActive(true) === 0) {
+      //     stars.children.iterate(function (child) {
+      //         child.enableBody(true, child.x, 0, true, true);
+      //     });
+
+          // let x =
+          //     player.x < 400
+          //         ? Phaser.Math.Between(400, 800)
+          //         : Phaser.Math.Between(0, 400);
+
+          // let bomb = bombs.create(x, 16, "bomb");
+          // bomb.setBounce(1);
+          // bomb.setCollideWorldBounds(true);
+          // bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+      // }
+  }
+
   }
