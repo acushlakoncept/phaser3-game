@@ -14,7 +14,7 @@ export class Level extends Phaser.Scene {
       this.levelKey = key
       this.nextLevel = {
         'Credits': 'Intro',
-        'Intro': 'Level1',
+        'Intro': 'Level4',
         'Level1': 'Level2',
         'Level2': 'Level3',
         'Level3': 'Level4',
@@ -93,6 +93,7 @@ export class Level extends Phaser.Scene {
         animateSnowman(gameState.snowman2, this, 1800, 1800)
 
         checkCollision(this, gameState.player, gameState.snowman, gameState.active)
+        checkCollision(this, gameState.player, gameState.snowman2, gameState.active)
       }
 
       if (this.scene.key == 'Level2') {
@@ -108,6 +109,11 @@ export class Level extends Phaser.Scene {
         animateSnowman(gameState.snowman4, this, 1070, 1800)
         animateSnowman(gameState.snowman5, this, 1450, 1800)
         animateSnowman(gameState.snowman6, this, 1900, 1800)
+
+        checkCollision(this, gameState.player, gameState.snowman3, gameState.active)
+        checkCollision(this, gameState.player, gameState.snowman4, gameState.active)
+        checkCollision(this, gameState.player, gameState.snowman5, gameState.active)
+        checkCollision(this, gameState.player, gameState.snowman6, gameState.active)
       }
 
       if (this.scene.key == 'Level3') {
@@ -121,6 +127,9 @@ export class Level extends Phaser.Scene {
         animateSnowman(gameState.snowman8, this, 1300, 1500)
         animateSnowman(gameState.snowman9, this, 1950, 1500)
 
+        checkCollision(this, gameState.player, gameState.snowman7, gameState.active)
+        checkCollision(this, gameState.player, gameState.snowman8, gameState.active)
+        checkCollision(this, gameState.player, gameState.snowman9, gameState.active)
       }
 
       if(this.scene.key == 'Level4') {
@@ -140,6 +149,11 @@ export class Level extends Phaser.Scene {
         gameState.snowman10 = this.physics.add.sprite(1120, 100, 'snowman');
         this.physics.add.collider(gameState.snowman10, gameState.platforms);
         animateSnowman(gameState.snowman10, this, 1300, 1600)
+
+        checkCollision(this, gameState.player, gameState.snowman10, gameState.active)
+        checkCollision(this, gameState.player, gameState.bomb, gameState.active, 'bomb')
+        checkCollision(this, gameState.player, gameState.bomb2, gameState.active, 'bomb')
+        checkCollision(this, gameState.player, gameState.bomb3, gameState.active, 'bomb')
       }
 
       this.physics.add.overlap(gameState.player, gameState.starCoins, this.collectStar, null, this);
