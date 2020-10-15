@@ -102,13 +102,7 @@ export class Level extends Phaser.Scene {
       }
 
 
-    //   this.physics.add.overlap(
-    //     gameState.player,
-    //     gameState.coins,
-    //     function(){
-
-    //     }
-    // );
+      this.physics.add.overlap(gameState.player, gameState.starCoins, this.collectStar, null, this);
      
       gameState.cursors = this.input.keyboard.createCursorKeys();
   
@@ -148,6 +142,7 @@ export class Level extends Phaser.Scene {
 
     collectStar(player, star) {
       star.disableBody(true, true);
+      this.sound.add('mouseover').play()
 
       // score += 10;
       // scoreText.setText("Score: " + score);
@@ -168,5 +163,20 @@ export class Level extends Phaser.Scene {
           // bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
       // }
   }
+
+  getStar(player, star) {
+		star.disableBody(true, true);
+		// this.score += 1;
+		// this.scoreText.setText('Score: ' + this.score);
+		
+		// if (this.stars.countActive(true) === 0)
+		// {
+		// 	this.stars.children.iterate(function (child) {
+
+		// 		child.enableBody(true, child.x, child.y, true, true);
+
+		// 	});
+		// }			
+	}
 
   }
