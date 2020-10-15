@@ -13,7 +13,7 @@ export class Level extends Phaser.Scene {
       this.levelKey = key
       this.nextLevel = {
         'Credits': 'Intro',
-        'Intro': 'Level3',
+        'Intro': 'Level4',
         'Level1': 'Level2',
         'Level2': 'Level3',
         'Level3': 'Level4',
@@ -38,6 +38,7 @@ export class Level extends Phaser.Scene {
       this.load.image('star', './assets/star.png');
       this.load.audio('mouseover', './assets/mouseover.wav');
       this.load.spritesheet('snowman', './assets/snowman.png', { frameWidth: 50, frameHeight: 70 });
+      this.load.image("bomb", "assets/bomb.png");
     }
   
     create() {
@@ -53,7 +54,8 @@ export class Level extends Phaser.Scene {
         key: "star",
         repeat: 15,
         allowGravity: false
-    });
+      });
+      gameState.bombs = this.physics.add.group();
 
       gameState.starCoins.children.iterate((child) => {
         for (let i = 0; i < 15; i++){
@@ -78,6 +80,7 @@ export class Level extends Phaser.Scene {
       gameState.player.setCollideWorldBounds(true);
       this.physics.add.collider(gameState.player, gameState.platforms);
       this.physics.add.collider(gameState.goal, gameState.platforms);
+      this.physics.add.collider(gameState.bombs, gameState.platforms);
 
       if (this.scene.key == 'Level1') {
         gameState.snowman = this.physics.add.sprite(460, 100, 'snowman');
@@ -115,6 +118,25 @@ export class Level extends Phaser.Scene {
         animateSnowman(gameState.snowman8, this, 1300, 1500)
         animateSnowman(gameState.snowman9, this, 1950, 1500)
 
+      }
+
+      if(this.scene.key == 'Level4') {
+        gameState.bomb = gameState.bombs.create(Phaser.Math.Between(200, 400), 16, 'bomb');
+        gameState.bomb2 = gameState.bombs.create(Phaser.Math.Between(500, 1000), 16, 'bomb');
+        gameState.bomb3 = gameState.bombs.create(Phaser.Math.Between(800, 1500), 16, 'bomb');
+        gameState.bomb.setBounce(1);
+        gameState.bomb2.setBounce(1);
+        gameState.bomb3.setBounce(1);
+        gameState.bomb.setCollideWorldBounds(true);
+        gameState.bomb2.setCollideWorldBounds(true);
+        gameState.bomb3.setCollideWorldBounds(true);
+        gameState.bomb.setVelocity(Phaser.Math.Between(-200, 200), 200);
+        gameState.bomb2.setVelocity(Phaser.Math.Between(-200, 200), 30);
+        gameState.bomb3.setVelocity(Phaser.Math.Between(-200, 300), 50);
+
+        gameState.snowman10 = this.physics.add.sprite(1120, 100, 'snowman');
+        this.physics.add.collider(gameState.snowman10, gameState.platforms);
+        animateSnowman(gameState.snowman10, this, 1300, 1600)
       }
 
 
