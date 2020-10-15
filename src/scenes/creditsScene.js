@@ -31,4 +31,8 @@ export class Credits extends Level {
           this.scene.start(this.nextLevel[this.levelKey]);
       })
     }
+
+    update() {
+
+    }
 }

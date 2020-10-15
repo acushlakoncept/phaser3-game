@@ -17,7 +17,7 @@ export class Level extends Phaser.Scene {
         'Level1': 'Level2',
         'Level2': 'Level3',
         'Level3': 'Level4',
-        'Level4': 'Credits',
+        'Level4': 'End',
       }
     }
   
@@ -130,7 +130,7 @@ export class Level extends Phaser.Scene {
         gameState.bomb.setCollideWorldBounds(true);
         gameState.bomb2.setCollideWorldBounds(true);
         gameState.bomb3.setCollideWorldBounds(true);
-        gameState.bomb.setVelocity(Phaser.Math.Between(-200, 200), 200);
+        gameState.bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
         gameState.bomb2.setVelocity(Phaser.Math.Between(-200, 200), 30);
         gameState.bomb3.setVelocity(Phaser.Math.Between(-200, 300), 50);
 
@@ -138,7 +138,6 @@ export class Level extends Phaser.Scene {
         this.physics.add.collider(gameState.snowman10, gameState.platforms);
         animateSnowman(gameState.snowman10, this, 1300, 1600)
       }
-
 
       this.physics.add.overlap(gameState.player, gameState.starCoins, this.collectStar, null, this);
       gameState.cursors = this.input.keyboard.createCursorKeys();
