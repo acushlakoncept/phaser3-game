@@ -46,15 +46,9 @@ export class Level extends Phaser.Scene {
       gameState.bgColor = this.add.rectangle(0, 0, config.width, config.height, 0x00ffbb).setOrigin(0, 0);
       createStars(gameState, this);
       createParallaxBackgrounds(gameState, this);
-
       gameState.scoreText = this.add.text(16, 16, "score: " + gameState.score, { fontSize: "32px", fill: "#000"});
-
-
-
       gameState.player = this.physics.add.sprite(80, 110, 'guy').setScale(1.8);
-      
       gameState.platforms = this.physics.add.staticGroup();
-
       gameState.starCoins = this.physics.add.group({
         key: "star",
         repeat: 15,
@@ -65,7 +59,7 @@ export class Level extends Phaser.Scene {
         for (let i = 0; i < 15; i++){
           let xPos = Phaser.Math.Between(100, 1800);
           let yPos = Phaser.Math.Between(80, 200);
-          
+    
           child.x = xPos;
           child.y = yPos;
           child.setOrigin(0,0);
@@ -74,9 +68,7 @@ export class Level extends Phaser.Scene {
 
      
       createAnimations(this);
-  
       createSnow(gameState, this);
-  
       levelSetup(this, gameState);
   
       this.cameras.main.setBounds(0, 0, gameState.bg3.width, gameState.bg3.height);
@@ -84,9 +76,7 @@ export class Level extends Phaser.Scene {
   
       this.cameras.main.startFollow(gameState.player, true, 0.5, 0.5)
       gameState.player.setCollideWorldBounds(true);
-  
       this.physics.add.collider(gameState.player, gameState.platforms);
-      
       this.physics.add.collider(gameState.goal, gameState.platforms);
 
       if (this.scene.key == 'Level1') {
@@ -116,9 +106,7 @@ export class Level extends Phaser.Scene {
 
 
       this.physics.add.overlap(gameState.player, gameState.starCoins, this.collectStar, null, this);
-     
       gameState.cursors = this.input.keyboard.createCursorKeys();
-  
     }
   
     update() {
