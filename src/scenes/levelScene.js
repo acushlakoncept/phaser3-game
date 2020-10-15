@@ -4,9 +4,9 @@ import { createStars } from '../utils/stars';
 import { createParallaxBackgrounds } from '../utils/backgrounds';
 import { createSnow } from '../utils/snow';
 import { createAnimations } from '../utils/animations';
-import { levelSetup } from '../utils/levelSetups'; 
-import { checkCollision } from '../utils/enemyCollide'; 
+import { levelSetup } from '../utils/levelSetups';  
 import { addSnowman } from '../utils/addSnowman'; 
+import { addBomb } from '../utils/addBomb'; 
 
 export class Level extends Phaser.Scene {
     constructor(key) {
@@ -14,7 +14,7 @@ export class Level extends Phaser.Scene {
       this.levelKey = key
       this.nextLevel = {
         'Credits': 'Intro',
-        'Intro': 'Level1',
+        'Intro': 'Level4',
         'Level1': 'Level2',
         'Level2': 'Level3',
         'Level3': 'Level4',
@@ -102,24 +102,11 @@ export class Level extends Phaser.Scene {
       }
 
       if(this.scene.key == 'Level4') {
-        gameState.bomb = gameState.bombs.create(Phaser.Math.Between(200, 400), 16, 'bomb');
-        gameState.bomb2 = gameState.bombs.create(Phaser.Math.Between(500, 1000), 16, 'bomb');
-        gameState.bomb3 = gameState.bombs.create(Phaser.Math.Between(800, 1500), 16, 'bomb');
-        gameState.bomb.setBounce(1);
-        gameState.bomb2.setBounce(1);
-        gameState.bomb3.setBounce(1);
-        gameState.bomb.setCollideWorldBounds(true);
-        gameState.bomb2.setCollideWorldBounds(true);
-        gameState.bomb3.setCollideWorldBounds(true);
-        gameState.bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        gameState.bomb2.setVelocity(Phaser.Math.Between(-200, 200), 30);
-        gameState.bomb3.setVelocity(Phaser.Math.Between(-200, 300), 50);
+        addBomb(this, gameState.bomb, gameState.bombs, 200, 400, gameState.player, gameState.active)
+        addBomb(this, gameState.bomb2, gameState.bombs, 500, 1000, gameState.player, gameState.active)
+        addBomb(this, gameState.bomb3, gameState.bombs, 800, 1500, gameState.player, gameState.active)
 
         addSnowman(this, gameState.snowman10, gameState.platforms, 1120, 1300, 1600, gameState.player, gameState.active)
-
-        checkCollision(this, gameState.player, gameState.bomb, gameState.active, 'bomb')
-        checkCollision(this, gameState.player, gameState.bomb2, gameState.active, 'bomb')
-        checkCollision(this, gameState.player, gameState.bomb3, gameState.active, 'bomb')
       }
 
       this.physics.add.overlap(gameState.player, gameState.starCoins, this.collectStar, null, this);
