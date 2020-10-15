@@ -76,36 +76,46 @@ export class Level extends Phaser.Scene {
         this.physics.add.collider(gameState.snowman, gameState.platforms);
         this.physics.add.collider(gameState.snowman2, gameState.platforms);
         
-        
+        gameState.snowman.anims.play('snowmanAlert', true);
+        gameState.snowman2.anims.play('snowmanAlert', true);
+
+        gameState.snowman.move = this.tweens.add({
+          targets: gameState.snowman,
+          x: 640,
+          ease: 'Linear',
+          duration: 1900,
+          repeat: -1,
+          yoyo: true
+        })
+  
+        gameState.snowman2.move = this.tweens.add({
+          targets: gameState.snowman2,
+          x: 1800,
+          ease: 'Linear',
+          duration: 1800,
+          repeat: -1,
+          yoyo: true
+        })
       }
 
       if (this.scene.key == 'Level2') {
-        gameState.snowman3 = this.physics.add.sprite(300, 100, 'snowman');
-        this.physics.add.collider(gameState.snowman2, gameState.platforms);
+        gameState.snowman3 = this.physics.add.sprite(280, 100, 'snowman');
+        this.physics.add.collider(gameState.snowman3, gameState.platforms);
 
         gameState.snowman3.anims.play('snowmanAlert', true);
+
+        gameState.snowman3.move = this.tweens.add({
+          targets: gameState.snowman3,
+          x: 380,
+          ease: 'Linear',
+          duration: 1800,
+          repeat: -1,
+          yoyo: true
+        })
       }
+     
+
       
-      gameState.snowman.anims.play('snowmanAlert', true);
-      gameState.snowman2.anims.play('snowmanAlert', true);
-
-      gameState.snowman.move = this.tweens.add({
-        targets: gameState.snowman,
-        x: 640,
-        ease: 'Linear',
-        duration: 1900,
-        repeat: -1,
-        yoyo: true
-      })
-
-      gameState.snowman2.move = this.tweens.add({
-        targets: gameState.snowman2,
-        x: 1800,
-        ease: 'Linear',
-        duration: 1800,
-        repeat: -1,
-        yoyo: true
-      })
       
   
       gameState.cursors = this.input.keyboard.createCursorKeys();
