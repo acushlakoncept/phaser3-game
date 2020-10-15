@@ -13,7 +13,7 @@ export class Level extends Phaser.Scene {
       this.levelKey = key
       this.nextLevel = {
         'Credits': 'Intro',
-        'Intro': 'Level1',
+        'Intro': 'Level3',
         'Level1': 'Level2',
         'Level2': 'Level3',
         'Level3': 'Level4',
