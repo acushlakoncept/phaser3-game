@@ -13,7 +13,7 @@ export class Level extends Phaser.Scene {
       this.levelKey = key
       this.nextLevel = {
         'Credits': 'Intro',
-        'Intro': 'GameOver',
+        'Intro': 'Level1',
         'Level1': 'Level2',
         'Level2': 'Level3',
         'Level3': 'Level4',
@@ -90,6 +90,20 @@ export class Level extends Phaser.Scene {
 
         animateSnowman(gameState.snowman, this, 640, 1900)
         animateSnowman(gameState.snowman2, this, 1800, 1800)
+
+        this.physics.add.overlap(gameState.player, gameState.snowman, () => {
+          this.add.text(250, 50, '      Game Over!', { fontFamily: 'Arial', fontSize: 36, color: '#000000' });
+          gameState.player.setTint(0xab1f08)
+          this.physics.pause();
+          gameState.active = false;
+          this.anims.pauseAll();
+          gameState.snowman.move.stop();
+          setTimeout(() => { 
+            this.scene.stop(this.levelKey);
+            this.scene.start('GameOver');
+           }, 1500);
+          
+        });
       }
 
       if (this.scene.key == 'Level2') {
@@ -141,6 +155,8 @@ export class Level extends Phaser.Scene {
 
       this.physics.add.overlap(gameState.player, gameState.starCoins, this.collectStar, null, this);
       gameState.cursors = this.input.keyboard.createCursorKeys();
+
+     
     }
   
     update() {
