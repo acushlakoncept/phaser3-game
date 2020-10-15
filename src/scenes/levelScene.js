@@ -6,6 +6,7 @@ import { createSnow } from '../utils/snow';
 import { createAnimations } from '../utils/animations';
 import { levelSetup } from '../utils/levelSetups'; 
 import { animateSnowman } from '../utils/snowmanTween'; 
+import { checkCollision } from '../utils/enemyCollide'; 
 
 export class Level extends Phaser.Scene {
     constructor(key) {
@@ -91,19 +92,7 @@ export class Level extends Phaser.Scene {
         animateSnowman(gameState.snowman, this, 640, 1900)
         animateSnowman(gameState.snowman2, this, 1800, 1800)
 
-        this.physics.add.overlap(gameState.player, gameState.snowman, () => {
-          this.add.text(250, 50, '      Game Over!', { fontFamily: 'Arial', fontSize: 36, color: '#000000' });
-          gameState.player.setTint(0xab1f08)
-          this.physics.pause();
-          gameState.active = false;
-          this.anims.pauseAll();
-          gameState.snowman.move.stop();
-          setTimeout(() => { 
-            this.scene.stop(this.levelKey);
-            this.scene.start('GameOver');
-           }, 1500);
-          
-        });
+        checkCollision(this, gameState.player, gameState.snowman, gameState.active)
       }
 
       if (this.scene.key == 'Level2') {
