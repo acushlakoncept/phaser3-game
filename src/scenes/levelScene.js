@@ -7,6 +7,7 @@ import { createAnimations } from '../utils/animations';
 import { levelSetup } from '../utils/levelSetups'; 
 import { animateSnowman } from '../utils/snowmanTween'; 
 import { checkCollision } from '../utils/enemyCollide'; 
+import { addSnowman } from '../utils/addSnowman'; 
 
 export class Level extends Phaser.Scene {
     constructor(key) {
@@ -14,7 +15,7 @@ export class Level extends Phaser.Scene {
       this.levelKey = key
       this.nextLevel = {
         'Credits': 'Intro',
-        'Intro': 'Level4',
+        'Intro': 'Level1',
         'Level1': 'Level2',
         'Level2': 'Level3',
         'Level3': 'Level4',
@@ -84,15 +85,17 @@ export class Level extends Phaser.Scene {
       this.physics.add.collider(gameState.bombs, gameState.platforms);
 
       if (this.scene.key == 'Level1') {
-        gameState.snowman = this.physics.add.sprite(460, 100, 'snowman');
+       
+        // gameState.snowman = this.physics.add.sprite(460, 100, 'snowman');
+        addSnowman(this, gameState.snowman, gameState.platforms, 460, 100, 640, 1900, gameState.player, gameState.active)
         gameState.snowman2 = this.physics.add.sprite(1600, 100, 'snowman');
-        this.physics.add.collider(gameState.snowman, gameState.platforms);
+        // this.physics.add.collider(gameState.snowman, gameState.platforms);
         this.physics.add.collider(gameState.snowman2, gameState.platforms);
 
-        animateSnowman(gameState.snowman, this, 640, 1900)
+        // animateSnowman(gameState.snowman, this, 640, 1900)
         animateSnowman(gameState.snowman2, this, 1800, 1800)
 
-        checkCollision(this, gameState.player, gameState.snowman, gameState.active)
+        // checkCollision(this, gameState.player, gameState.snowman, gameState.active)
         checkCollision(this, gameState.player, gameState.snowman2, gameState.active)
       }
 
