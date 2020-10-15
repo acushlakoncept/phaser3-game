@@ -35,6 +35,7 @@ export class Level extends Phaser.Scene {
       this.load.image('credits', './assets/credits.png');
       this.load.image('back', './assets/back.png');
       this.load.audio('mouseover', './assets/mouseover.wav');
+      this.load.spritesheet('snowman', './assets/snowman.png', { frameWidth: 50, frameHeight: 70 });
     }
   
     create() {
@@ -45,7 +46,13 @@ export class Level extends Phaser.Scene {
       createParallaxBackgrounds(gameState, this);
 
       gameState.player = this.physics.add.sprite(80, 110, 'guy').setScale(1.8);
+      
       gameState.platforms = this.physics.add.staticGroup();
+
+     
+
+     
+      
   
       createAnimations(this);
   
@@ -60,7 +67,46 @@ export class Level extends Phaser.Scene {
       gameState.player.setCollideWorldBounds(true);
   
       this.physics.add.collider(gameState.player, gameState.platforms);
+      
       this.physics.add.collider(gameState.goal, gameState.platforms);
+
+      if (this.scene.key == 'Level1') {
+        gameState.snowman = this.physics.add.sprite(460, 100, 'snowman');
+        gameState.snowman2 = this.physics.add.sprite(1600, 100, 'snowman');
+        this.physics.add.collider(gameState.snowman, gameState.platforms);
+        this.physics.add.collider(gameState.snowman2, gameState.platforms);
+        
+        
+      }
+
+      if (this.scene.key == 'Level2') {
+        gameState.snowman3 = this.physics.add.sprite(300, 100, 'snowman');
+        this.physics.add.collider(gameState.snowman2, gameState.platforms);
+
+        gameState.snowman3.anims.play('snowmanAlert', true);
+      }
+      
+      gameState.snowman.anims.play('snowmanAlert', true);
+      gameState.snowman2.anims.play('snowmanAlert', true);
+
+      gameState.snowman.move = this.tweens.add({
+        targets: gameState.snowman,
+        x: 640,
+        ease: 'Linear',
+        duration: 1900,
+        repeat: -1,
+        yoyo: true
+      })
+
+      gameState.snowman2.move = this.tweens.add({
+        targets: gameState.snowman2,
+        x: 1800,
+        ease: 'Linear',
+        duration: 1800,
+        repeat: -1,
+        yoyo: true
+      })
+      
   
       gameState.cursors = this.input.keyboard.createCursorKeys();
   

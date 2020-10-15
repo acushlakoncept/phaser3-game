@@ -1,4 +1,5 @@
 import { Level } from './levelScene';
+import { gameState } from '../utils/gameState';
 
 export class Level1 extends Level {
     constructor() {

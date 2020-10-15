@@ -16,7 +16,8 @@ export class Credits extends Level {
 
         this.add.text(80, 180, 'Created by Uduak Essien', { fontSize: '25px', fill: '#000000' });
         this.add.text(85, 220, 'JavaScript Capstone Project', { fontSize: '20px', fill: '#000000' });
-        this.add.text(120, 270, 'Acknowledgements', { fontSize: '25px', fill: '#000000' });
+        this.add.text(190, 250, '@Microverseinc', { fontSize: '15px', fill: '#000000' });
+        this.add.text(120, 280, 'Acknowledgements', { fontSize: '25px', fill: '#000000' });
 
         this.add.text(170, 320, '[+] Phaser 3', { fontSize: '20px', fill: '#000000' });
         this.add.text(170, 360, '[+] OpenGameArt', { fontSize: '20px', fill: '#000000' });

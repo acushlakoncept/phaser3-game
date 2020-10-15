@@ -5,7 +5,7 @@ import { Credits } from "../scenes/creditsScene";
 
 export const config = {
   type: Phaser.AUTO,
-  width: 500,
+  width: 1000,
   height: 600,
   fps: { target: 60 },
   backgroundColor: "fff",
