@@ -1,4 +1,4 @@
-import { gameState } from '../utils/gameState';
+import { gameState, saveScore } from '../utils/gameState';
 import { config } from '../utils/config';
 import { createStars } from '../utils/stars';
 import { createParallaxBackgrounds } from '../utils/backgrounds';
@@ -46,6 +46,10 @@ export class Level extends Phaser.Scene {
       gameState.bgColor = this.add.rectangle(0, 0, config.width, config.height, 0x00ffbb).setOrigin(0, 0);
       createStars(gameState, this);
       createParallaxBackgrounds(gameState, this);
+
+      gameState.scoreText = this.add.text(16, 16, "score: " + gameState.score, { fontSize: "32px", fill: "#000"});
+
+
 
       gameState.player = this.physics.add.sprite(80, 110, 'guy').setScale(1.8);
       
@@ -143,6 +147,19 @@ export class Level extends Phaser.Scene {
     collectStar(player, star) {
       star.disableBody(true, true);
       this.sound.add('mouseover').play()
+
+      gameState.score += 10;
+      gameState.scoreText.setText("Score: " + gameState.score);
+      saveScore();
+
+      if (gameState.starCoins.countActive(true) === 0)
+      {
+        gameState.starCoins.children.iterate(function (child) {
+
+          child.enableBody(true, child.x, child.y, true, true);
+
+        });
+      }	
 
       // score += 10;
       // scoreText.setText("Score: " + score);

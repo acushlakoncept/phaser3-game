@@ -1,4 +1,4 @@
-import { gameState } from '../utils/gameState';
+import { gameState, saveScore } from '../utils/gameState';
 import { Level } from './levelScene';
 import { createAnimations } from '../utils/animations';
 import { mouseOverEffect } from '../utils/mouserover';
@@ -31,6 +31,8 @@ export class Intro extends Level {
         gameState.playButton.on('pointerup', () => {
             this.scene.stop(this.levelKey);
             this.scene.start(this.nextLevel[this.levelKey]);
+            gameState.score = 0
+            saveScore
         })
 
         gameState.credits.on('pointerup', () => {
