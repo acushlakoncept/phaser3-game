@@ -101,8 +101,17 @@ export class Level extends Phaser.Scene {
 
       if (this.scene.key == 'Level2') {
         gameState.snowman3 = this.physics.add.sprite(280, 100, 'snowman');
+        gameState.snowman4 = this.physics.add.sprite(905, 100, 'snowman');
+        gameState.snowman5 = this.physics.add.sprite(1350, 100, 'snowman');
+        gameState.snowman6 = this.physics.add.sprite(1600, 100, 'snowman');
         this.physics.add.collider(gameState.snowman3, gameState.platforms);
+        this.physics.add.collider(gameState.snowman4, gameState.platforms);
+        this.physics.add.collider(gameState.snowman5, gameState.platforms);
+        this.physics.add.collider(gameState.snowman6, gameState.platforms);
         animateSnowman(gameState.snowman3, this, 380, 1800)
+        animateSnowman(gameState.snowman4, this, 1070, 1800)
+        animateSnowman(gameState.snowman5, this, 1450, 1800)
+        animateSnowman(gameState.snowman6, this, 1900, 1800)
       }
 
 

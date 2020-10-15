@@ -1,6 +1,4 @@
 import { Level } from "./levelScene";
-
-
 export class Level1 extends Level {
   constructor() {
     super("Level1");
