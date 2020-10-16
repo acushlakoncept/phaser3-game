@@ -45,6 +45,11 @@ export class Intro extends Level {
       this.scene.start("Credits");
     });
 
+    gameState.optionButton.on("pointerup", () => {
+      this.scene.stop(this.levelKey);
+      this.scene.start("Options");
+    });
+
     createAnimations(this);
   }
 

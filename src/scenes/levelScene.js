@@ -50,6 +50,7 @@ export class Level extends Phaser.Scene {
     });
     this.load.image("bomb", "assets/bomb.png");
     this.load.html("nameform", "assets/inputform.html");
+    this.load.image("arrowkeys", "assets/left_right_keys.png");
 
     // this.load.on('progress', function (value) {
     //     console.log(value * 100);
@@ -283,7 +284,8 @@ export class Level extends Phaser.Scene {
       }
 
       if (
-        Phaser.Input.Keyboard.JustDown(gameState.cursors.space) &&
+        (Phaser.Input.Keyboard.JustDown(gameState.cursors.space) ||
+          gameState.cursors.up.isDown) &&
         gameState.player.body.touching.down
       ) {
         gameState.player.anims.play("jump", true);
