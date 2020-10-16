@@ -26,5 +26,5 @@ export const config = {
   dom: {
     createContainer: true
   },
-  scene: [ Options,Player, Intro, Credits, Level1, Level2, Level3, Level4, GameOver, End]
+  scene: [Player, Intro, Options, Credits, Level1, Level2, Level3, Level4, GameOver, End]
 };
