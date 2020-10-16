@@ -26,13 +26,13 @@ export class GameOver extends Level {
       fill: '#000000',
     });
 
-    const nameOfPlayer = gameState.playerName;
-    const playerScore = gameState.score;
+    // const nameOfPlayer = gameState.playerName;
+    // const playerScore = gameState.score;
 
     if (!gameState.called) {
       gameState.called = true;
       setCalled();
-      postLeaderBoardData(nameOfPlayer, playerScore);
+      postLeaderBoardData(gameState.playerName, gameState.score);
     }
 
     gameState.replay = this.add.text(130, 280, '[+] Play Again', {

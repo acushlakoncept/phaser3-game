@@ -13,7 +13,6 @@ export const saveScore = () => {
 
 export const setPlayer = () => {
   localStorage.setItem('game.player', JSON.stringify(gameState.playerName));
-  localStorage.setItem('game.called', JSON.stringify(gameState.called));
 };
 
 export const setCalled = () => {

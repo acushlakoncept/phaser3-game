@@ -4,15 +4,16 @@ import 'regenerator-runtime';
 const apiKey = 'i64UOSYgte2pwuH0vZ55';
 const URI = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${apiKey}/scores`;
 
-const postLeaderBoardData = async (player, score) => {
+const postLeaderBoardData = async (player, playerScore) => {
   const data = {
     user: player,
-    score,
+    score: playerScore,
   };
 
   try {
     const response = await fetch(URI, {
       method: 'POST',
+      mode: 'cors',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -38,12 +39,11 @@ const rankByScore = (res) => {
   }
 
   sortable.sort((a, b) => b[1] - a[1]);
-  const firstFifteen = [];
+  const firstTen = [];
   for (let i = 0; i < 10; i += 1) {
-    firstFifteen.push(sortable[i]);
+    firstTen.push(sortable[i]);
   }
-  localStorage.setItem('game.board', JSON.stringify(firstFifteen));
-  // return sortable;
+  localStorage.setItem('game.board', JSON.stringify(firstTen));
 };
 
 const fetchLeaderBoardData = () => {
