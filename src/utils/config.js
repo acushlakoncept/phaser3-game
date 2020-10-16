@@ -21,7 +21,7 @@ export const config = {
       enableBody: true
     }
   },
-  parent: 'form',
+  parent: "form",
   dom: {
     createContainer: true
   },
