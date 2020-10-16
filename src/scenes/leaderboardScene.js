@@ -19,15 +19,16 @@ export class LeaderBoard extends Level {
     this.add.text(170, 85, 'ADVENTURES', { fontSize: '25px', fill: '#000000' });
     this.add.text(190, 110, 'OF CUSH', { fontSize: '25px', fill: '#000000' });
 
-    this.add.text(150, 170, 'Leader Board', {
+    this.add.text(150, 170, 'Top 10 Winners', {
       fontSize: '25px',
       fill: '#000000',
     });
 
     fetchLeaderBoardData();
 
-    this.add.text(80, 250, 'Use left and right arrow keys to move character', { fontSize: '12px', fill: '#000000' });
-    this.add.text(80, 280, 'Use space bar or up arrow key for jumping', { fontSize: '12px', fill: '#000000' });
+    for (let i = 0; i < 10; i += 1) {
+      this.add.text(150, 220 + (i * 20), `${i + 1}. ${gameState.board[i][0]} - ${gameState.board[i][1]}`, { fontSize: '15px', fill: '#000000' });
+    }
 
     gameState.backButton.setInteractive({ useHandCursor: true });
     mouseOverEffect(gameState.backButton, this);

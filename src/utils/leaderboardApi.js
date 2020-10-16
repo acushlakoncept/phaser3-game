@@ -39,7 +39,7 @@ const rankByScore = (res) => {
 
   sortable.sort((a, b) => b[1] - a[1]);
   const firstFifteen = [];
-  for (let i = 0; i < 15; i += 1) {
+  for (let i = 0; i < 10; i += 1) {
     firstFifteen.push(sortable[i]);
   }
   localStorage.setItem('game.board', JSON.stringify(firstFifteen));

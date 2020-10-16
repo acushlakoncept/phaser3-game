@@ -31,10 +31,11 @@ export const config = {
     createContainer: true,
   },
   scene: [
+    LeaderBoard,
     Player,
     Intro,
     Options,
-    LeaderBoard,
+    
     Credits,
     Level1,
     Level2,
