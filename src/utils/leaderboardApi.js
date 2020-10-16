@@ -1,3 +1,5 @@
+import 'regenerator-runtime';
+
 const apiKey = "i64UOSYgte2pwuH0vZ55";
 const URI = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${apiKey}/scores`;
 
