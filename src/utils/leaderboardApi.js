@@ -31,28 +31,36 @@ const postLeaderBoardData = async (player, score) => {
 
 const rankByScore = (res) => {
   const sortable = [];
+  const data = res.result;
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const user in res) {
-    sortable.push([user.name, user.score]);
+  for (let i = 0; i < data.length; i += 1) {
+    sortable.push([data[i].user, data[i].score]);
   }
 
   sortable.sort((a, b) => b[1] - a[1]);
-
-  return sortable;
+  const firstFifteen = [];
+  for (let i = 0; i < 15; i += 1) {
+    firstFifteen.push(sortable[i]);
+  }
+  localStorage.setItem('game.board', JSON.stringify(firstFifteen));
+  // return sortable;
 };
 
-const fetchLeaderBoardData = async () => {
-  try {
-    const response = await fetch(URI, { mode: 'cors' });
-    if (response.ok) {
-      const data = await response.json();
-      return rankByScore(data);
-    }
-    throw new Error('Server Down!');
-  } catch (error) {
-    return error;
-  }
+const fetchLeaderBoardData = () => {
+  fetch(URI, { mode: 'cors' })
+    .then(
+      (response) => {
+        if (response.status !== 200) {
+          console.log(`Looks like there was a problem. Status Code: ${
+            response.status}`);
+          return;
+        }
+        response.json().then((data) => rankByScore(data));
+      },
+    )
+    .catch((err) => {
+      console.log('Fetch Error :-S', err);
+    });
 };
 
 export { postLeaderBoardData, fetchLeaderBoardData };

@@ -10,6 +10,7 @@ import { End } from '../scenes/endScene';
 import { GameOver } from '../scenes/gameOverScene';
 import { Player } from '../scenes/playerScene';
 import { Options } from '../scenes/optionScene';
+import { LeaderBoard } from '../scenes/leaderboardScene';
 
 // eslint-disable-next-line import/prefer-default-export
 export const config = {
@@ -33,6 +34,7 @@ export const config = {
     Player,
     Intro,
     Options,
+    LeaderBoard,
     Credits,
     Level1,
     Level2,

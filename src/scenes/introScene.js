@@ -49,6 +49,11 @@ export class Intro extends Level {
       this.scene.start('Credits');
     });
 
+    gameState.leaderboard.on('pointerup', () => {
+      this.scene.stop(this.levelKey);
+      this.scene.start('LeaderBoard');
+    });
+
     gameState.optionButton.on('pointerup', () => {
       this.scene.stop(this.levelKey);
       this.scene.start('Options');
