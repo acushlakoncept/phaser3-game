@@ -10,10 +10,11 @@ export class Intro extends Level {
 
     create() {
         gameState.artboard = this.add.image(248, 300, 'artboard').setScale(.7);
-        gameState.optionButton = this.add.image(250, 210, 'options').setScale(.4);
-        gameState.leaderboard = this.add.image(250, 300, 'leaderboard').setScale(.4);
-        gameState.playButton = this.add.sprite(250, 480, 'play').setScale(.4);
-        gameState.credits = this.add.sprite(250, 390, 'credits').setScale(.4);
+        gameState.optionButton = this.add.image(250, 240, 'options').setScale(.4);
+        gameState.leaderboard = this.add.image(250, 310, 'leaderboard').setScale(.4);
+        gameState.playButton = this.add.sprite(250, 470, 'play').setScale(.4);
+        gameState.credits = this.add.sprite(250, 380, 'credits').setScale(.4);
+        this.add.text(110, 170, 'Ready to play? ' + gameState.playerName, { fontSize: '15px', fill: '#000000' })
 
         
         gameState.Title1 = this.add.text(220, 60, 'THE', { fontSize: '25px', fill: '#000000' });
