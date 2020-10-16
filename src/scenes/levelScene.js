@@ -40,6 +40,20 @@ export class Level extends Phaser.Scene {
       this.load.audio('mouseover', './assets/mouseover.wav');
       this.load.spritesheet('snowman', './assets/snowman.png', { frameWidth: 50, frameHeight: 70 });
       this.load.image("bomb", "assets/bomb.png");
+      this.load.html('nameform', 'assets/inputform.html');
+
+
+      this.load.on('progress', function (value) {
+          console.log(value * 100);
+      });
+                  
+      this.load.on('fileprogress', function (file) {
+          console.log(file.src);
+      });
+      
+      this.load.on('complete', function () {
+          console.log('complete');
+      });
     }
   
     create() {
