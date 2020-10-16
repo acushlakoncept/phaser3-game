@@ -50,6 +50,7 @@ export class Level extends Phaser.Scene {
     });
     this.load.image("bomb", "assets/bomb.png");
     this.load.html("nameform", "assets/inputform.html");
+    this.load.html("updatename", "assets/updatename.html");
     this.load.image("arrowkeys", "assets/left_right_keys.png");
 
     // this.load.on('progress', function (value) {
