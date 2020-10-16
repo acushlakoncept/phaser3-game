@@ -11,6 +11,7 @@ import { GameOver } from '../scenes/gameOverScene';
 import { Player } from '../scenes/playerScene';
 import { Options } from '../scenes/optionScene';
 import { LeaderBoard } from '../scenes/leaderboardScene';
+import { Preload } from '../scenes/preloadScene';
 
 // eslint-disable-next-line import/prefer-default-export
 export const config = {
@@ -31,6 +32,7 @@ export const config = {
     createContainer: true,
   },
   scene: [
+    Preload,
     Player,
     Intro,
     Options,

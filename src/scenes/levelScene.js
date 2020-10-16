@@ -25,38 +25,6 @@ export class Level extends Phaser.Scene {
     };
   }
 
-  preload() {
-    this.load.image('platform', './assets/platform.png');
-    this.load.image('snowflake', './assets/snowflake.png');
-    this.load.image('door', './assets/door.png');
-    this.load.spritesheet('guy', './assets/guy.png', {
-      frameWidth: 16,
-      frameHeight: 24,
-    });
-    this.load.image('bg1', './assets/mountain.png');
-    this.load.image('bg2', './assets/trees.png');
-    this.load.image('bg3', './assets/snowdunes.png');
-    this.load.spritesheet('play', './assets/play.png', {
-      frameWidth: 400,
-      frameHeight: 170,
-    });
-    this.load.image('artboard', './assets/artboard.png');
-    this.load.image('options', './assets/options.png');
-    this.load.image('leaderboard', './assets/leaderboard.png');
-    this.load.image('credits', './assets/credits.png');
-    this.load.image('back', './assets/back.png');
-    this.load.image('star', './assets/star.png');
-    this.load.audio('mouseover', './assets/mouseover.wav');
-    this.load.spritesheet('snowman', './assets/snowman.png', {
-      frameWidth: 50,
-      frameHeight: 70,
-    });
-    this.load.image('bomb', 'assets/bomb.png');
-    this.load.html('nameform', 'assets/inputform.html');
-    this.load.html('updatename', 'assets/updatename.html');
-    this.load.image('arrowkeys', 'assets/left_right_keys.png');
-  }
-
   create() {
     gameState.active = true;
 
