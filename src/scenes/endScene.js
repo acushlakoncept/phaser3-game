@@ -2,6 +2,7 @@
 import { gameState } from '../utils/gameState';
 import { Level } from './levelScene';
 import { mouseOverEffect } from '../utils/mouserover';
+import { postLeaderBoardData } from '../utils/leaderboardApi';
 
 // eslint-disable-next-line import/prefer-default-export
 export class End extends Level {
@@ -25,6 +26,8 @@ export class End extends Level {
       fontSize: '25px',
       fill: '#000000',
     });
+
+    postLeaderBoardData(gameState.playerName, gameState.score);
 
     gameState.backButton.setInteractive({ useHandCursor: true });
     mouseOverEffect(gameState.backButton, this);

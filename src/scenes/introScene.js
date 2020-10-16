@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable import/no-cycle */
-import { gameState, saveScore } from '../utils/gameState';
+import { gameState, saveScore, setCalled } from '../utils/gameState';
 import { Level } from './levelScene';
 import { createAnimations } from '../utils/animations';
 import { mouseOverEffect } from '../utils/mouserover';
@@ -40,6 +40,8 @@ export class Intro extends Level {
       this.scene.start(this.nextLevel[this.levelKey]);
       gameState.score = 0;
       saveScore();
+      gameState.called = false;
+      setCalled();
     });
 
     gameState.credits.on('pointerup', () => {

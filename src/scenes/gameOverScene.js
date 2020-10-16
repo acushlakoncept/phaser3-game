@@ -1,8 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable import/no-cycle */
-import { gameState, saveScore } from '../utils/gameState';
+import { gameState, saveScore, setCalled } from '../utils/gameState';
 import { Level } from './levelScene';
 import { mouseOverEffect } from '../utils/mouserover';
+import { postLeaderBoardData } from '../utils/leaderboardApi';
 
 export class GameOver extends Level {
   constructor() {
@@ -25,6 +26,15 @@ export class GameOver extends Level {
       fill: '#000000',
     });
 
+    const nameOfPlayer = gameState.playerName;
+    const playerScore = gameState.score;
+
+    if (!gameState.called) {
+      gameState.called = true;
+      setCalled();
+      postLeaderBoardData(nameOfPlayer, playerScore);
+    }
+
     gameState.replay = this.add.text(130, 280, '[+] Play Again', {
       fontSize: '20px',
       fill: '#000000',
@@ -42,6 +52,8 @@ export class GameOver extends Level {
     gameState.replay.on('pointerup', () => {
       gameState.score = 0;
       saveScore();
+      gameState.called = false;
+      setCalled();
       this.scene.stop(this.levelKey);
       this.scene.start('Level1');
     });

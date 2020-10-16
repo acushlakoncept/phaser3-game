@@ -1,6 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-import { gameState } from './gameState';
-import { postLeaderBoardData } from './leaderboardApi';
 
 export const checkCollision = (
   context,
@@ -22,7 +20,6 @@ export const checkCollision = (
     if (objType == null) {
       obj.move.stop();
     }
-    postLeaderBoardData(gameState.playerName, gameState.score);
     setTimeout(() => {
       context.scene.stop(context.levelKey);
       context.scene.start('GameOver');
