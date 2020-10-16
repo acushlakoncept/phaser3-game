@@ -1,69 +1,60 @@
-import { gameState, saveScore } from "../utils/gameState";
-import { config } from "../utils/config";
-import { createStars } from "../utils/stars";
-import { createParallaxBackgrounds } from "../utils/backgrounds";
-import { createSnow } from "../utils/snow";
-import { createAnimations } from "../utils/animations";
-import { levelSetup } from "../utils/levelSetups";
-import { addSnowman } from "../utils/addSnowman";
-import { addBomb } from "../utils/addBomb";
+/* eslint-disable no-undef */
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/prefer-default-export */
+import { gameState, saveScore } from '../utils/gameState';
+import { config } from '../utils/config';
+import { createStars } from '../utils/stars';
+import { createParallaxBackgrounds } from '../utils/backgrounds';
+import { createSnow } from '../utils/snow';
+import { createAnimations } from '../utils/animations';
+import { levelSetup } from '../utils/levelSetups';
+import { addSnowman } from '../utils/addSnowman';
+import { addBomb } from '../utils/addBomb';
 
 export class Level extends Phaser.Scene {
   constructor(key) {
     super(key);
     this.levelKey = key;
     this.nextLevel = {
-      Credits: "Intro",
-      Intro: "Level1",
-      Level1: "Level2",
-      Level2: "Level3",
-      Level3: "Level4",
-      Level4: "End"
+      Credits: 'Intro',
+      Intro: 'Level1',
+      Level1: 'Level2',
+      Level2: 'Level3',
+      Level3: 'Level4',
+      Level4: 'End',
     };
   }
 
   preload() {
-    this.load.image("platform", "./assets/platform.png");
-    this.load.image("snowflake", "./assets/snowflake.png");
-    this.load.image("door", "./assets/door.png");
-    this.load.spritesheet("guy", "./assets/guy.png", {
+    this.load.image('platform', './assets/platform.png');
+    this.load.image('snowflake', './assets/snowflake.png');
+    this.load.image('door', './assets/door.png');
+    this.load.spritesheet('guy', './assets/guy.png', {
       frameWidth: 16,
-      frameHeight: 24
+      frameHeight: 24,
     });
-    this.load.image("bg1", "./assets/mountain.png");
-    this.load.image("bg2", "./assets/trees.png");
-    this.load.image("bg3", "./assets/snowdunes.png");
-    this.load.spritesheet("play", "./assets/play.png", {
+    this.load.image('bg1', './assets/mountain.png');
+    this.load.image('bg2', './assets/trees.png');
+    this.load.image('bg3', './assets/snowdunes.png');
+    this.load.spritesheet('play', './assets/play.png', {
       frameWidth: 400,
-      frameHeight: 170
+      frameHeight: 170,
     });
-    this.load.image("artboard", "./assets/artboard.png");
-    this.load.image("options", "./assets/options.png");
-    this.load.image("leaderboard", "./assets/leaderboard.png");
-    this.load.image("credits", "./assets/credits.png");
-    this.load.image("back", "./assets/back.png");
-    this.load.image("star", "./assets/star.png");
-    this.load.audio("mouseover", "./assets/mouseover.wav");
-    this.load.spritesheet("snowman", "./assets/snowman.png", {
+    this.load.image('artboard', './assets/artboard.png');
+    this.load.image('options', './assets/options.png');
+    this.load.image('leaderboard', './assets/leaderboard.png');
+    this.load.image('credits', './assets/credits.png');
+    this.load.image('back', './assets/back.png');
+    this.load.image('star', './assets/star.png');
+    this.load.audio('mouseover', './assets/mouseover.wav');
+    this.load.spritesheet('snowman', './assets/snowman.png', {
       frameWidth: 50,
-      frameHeight: 70
+      frameHeight: 70,
     });
-    this.load.image("bomb", "assets/bomb.png");
-    this.load.html("nameform", "assets/inputform.html");
-    this.load.html("updatename", "assets/updatename.html");
-    this.load.image("arrowkeys", "assets/left_right_keys.png");
-
-    // this.load.on('progress', function (value) {
-    //     console.log(value * 100);
-    // });
-
-    // this.load.on('fileprogress', function (file) {
-    //     console.log(file.src);
-    // });
-
-    // this.load.on('complete', function () {
-    //     console.log('complete');
-    // });
+    this.load.image('bomb', 'assets/bomb.png');
+    this.load.html('nameform', 'assets/inputform.html');
+    this.load.html('updatename', 'assets/updatename.html');
+    this.load.image('arrowkeys', 'assets/left_right_keys.png');
   }
 
   create() {
@@ -74,23 +65,23 @@ export class Level extends Phaser.Scene {
       .setOrigin(0, 0);
     createStars(gameState, this);
     createParallaxBackgrounds(gameState, this);
-    gameState.scoreText = this.add.text(16, 16, "score: " + gameState.score, {
-      fontSize: "32px",
-      fill: "#000"
+    gameState.scoreText = this.add.text(16, 16, `score: ${gameState.score}`, {
+      fontSize: '32px',
+      fill: '#000',
     });
-    gameState.player = this.physics.add.sprite(80, 110, "guy").setScale(1.8);
+    gameState.player = this.physics.add.sprite(80, 110, 'guy').setScale(1.8);
     gameState.platforms = this.physics.add.staticGroup();
     gameState.starCoins = this.physics.add.group({
-      key: "star",
+      key: 'star',
       repeat: 15,
-      allowGravity: false
+      allowGravity: false,
     });
     gameState.bombs = this.physics.add.group();
 
     gameState.starCoins.children.iterate((child) => {
-      for (let i = 0; i < 15; i++) {
-        let xPos = Phaser.Math.Between(100, 1800);
-        let yPos = Phaser.Math.Between(80, 200);
+      for (let i = 0; i < 15; i += 1) {
+        const xPos = Phaser.Math.Between(100, 1800);
+        const yPos = Phaser.Math.Between(80, 200);
 
         child.x = xPos;
         child.y = yPos;
@@ -106,13 +97,13 @@ export class Level extends Phaser.Scene {
       0,
       0,
       gameState.bg3.width,
-      gameState.bg3.height
+      gameState.bg3.height,
     );
     this.physics.world.setBounds(
       0,
       0,
       gameState.width,
-      gameState.bg3.height + gameState.player.height
+      gameState.bg3.height + gameState.player.height,
     );
 
     this.cameras.main.startFollow(gameState.player, true, 0.5, 0.5);
@@ -121,7 +112,7 @@ export class Level extends Phaser.Scene {
     this.physics.add.collider(gameState.goal, gameState.platforms);
     this.physics.add.collider(gameState.bombs, gameState.platforms);
 
-    if (this.scene.key == "Level1") {
+    if (this.scene.key === 'Level1') {
       addSnowman(
         this,
         gameState.snowman,
@@ -130,7 +121,7 @@ export class Level extends Phaser.Scene {
         640,
         1900,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
       addSnowman(
         this,
@@ -140,11 +131,11 @@ export class Level extends Phaser.Scene {
         1800,
         1800,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
     }
 
-    if (this.scene.key == "Level2") {
+    if (this.scene.key === 'Level2') {
       addSnowman(
         this,
         gameState.snowman3,
@@ -153,7 +144,7 @@ export class Level extends Phaser.Scene {
         380,
         1800,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
       addSnowman(
         this,
@@ -163,7 +154,7 @@ export class Level extends Phaser.Scene {
         1070,
         1800,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
       addSnowman(
         this,
@@ -173,7 +164,7 @@ export class Level extends Phaser.Scene {
         1450,
         1800,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
       addSnowman(
         this,
@@ -183,11 +174,11 @@ export class Level extends Phaser.Scene {
         1900,
         1800,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
     }
 
-    if (this.scene.key == "Level3") {
+    if (this.scene.key === 'Level3') {
       addSnowman(
         this,
         gameState.snowman7,
@@ -196,7 +187,7 @@ export class Level extends Phaser.Scene {
         620,
         1600,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
       addSnowman(
         this,
@@ -206,7 +197,7 @@ export class Level extends Phaser.Scene {
         1300,
         1500,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
       addSnowman(
         this,
@@ -216,11 +207,11 @@ export class Level extends Phaser.Scene {
         1950,
         1500,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
     }
 
-    if (this.scene.key == "Level4") {
+    if (this.scene.key === 'Level4') {
       addBomb(
         this,
         gameState.bomb,
@@ -228,7 +219,7 @@ export class Level extends Phaser.Scene {
         200,
         400,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
       addBomb(
         this,
@@ -237,7 +228,7 @@ export class Level extends Phaser.Scene {
         500,
         1000,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
       addBomb(
         this,
@@ -246,7 +237,7 @@ export class Level extends Phaser.Scene {
         800,
         1500,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
 
       addSnowman(
@@ -257,7 +248,7 @@ export class Level extends Phaser.Scene {
         1300,
         1600,
         gameState.player,
-        gameState.active
+        gameState.active,
       );
     }
 
@@ -266,7 +257,7 @@ export class Level extends Phaser.Scene {
       gameState.starCoins,
       this.collectStar,
       null,
-      this
+      this,
     );
     gameState.cursors = this.input.keyboard.createCursorKeys();
   }
@@ -275,39 +266,39 @@ export class Level extends Phaser.Scene {
     if (gameState.active) {
       if (gameState.cursors.right.isDown) {
         gameState.player.setVelocityX(gameState.speed);
-        gameState.player.anims.play("right", true);
+        gameState.player.anims.play('right', true);
       } else if (gameState.cursors.left.isDown) {
         gameState.player.setVelocityX(-gameState.speed);
-        gameState.player.anims.play("left", true);
+        gameState.player.anims.play('left', true);
       } else {
         gameState.player.setVelocityX(0);
-        gameState.player.anims.play("idle", true);
+        gameState.player.anims.play('idle', true);
       }
 
       if (
-        (Phaser.Input.Keyboard.JustDown(gameState.cursors.space) ||
-          gameState.cursors.up.isDown) &&
-        gameState.player.body.touching.down
+        (Phaser.Input.Keyboard.JustDown(gameState.cursors.space)
+          || gameState.cursors.up.isDown)
+        && gameState.player.body.touching.down
       ) {
-        gameState.player.anims.play("jump", true);
+        gameState.player.anims.play('jump', true);
         gameState.player.setVelocityY(-500);
       }
 
       if (!gameState.player.body.touching.down) {
-        gameState.player.anims.play("jump", true);
+        gameState.player.anims.play('jump', true);
       }
 
       if (gameState.player.y > gameState.bg3.height) {
-        this.cameras.main.shake(240, 0.01, false, function (camera, progress) {
+        this.cameras.main.shake(240, 0.01, false, (_camera, progress) => {
           if (progress > 0.9) {
-            this.add.text(gameState.player.x, 100, "Game Over!", {
-              fontFamily: "Arial",
+            this.add.text(gameState.player.x, 100, 'Game Over!', {
+              fontFamily: 'Arial',
               fontSize: 36,
-              color: "#000000"
+              color: '#000000',
             });
             setTimeout(() => {
               this.scene.stop(this.levelKey);
-              this.scene.start("GameOver");
+              this.scene.start('GameOver');
             }, 1500);
           }
         });
@@ -315,16 +306,16 @@ export class Level extends Phaser.Scene {
     }
   }
 
-  collectStar(player, star) {
+  collectStar(_player, star) {
     star.disableBody(true, true);
-    this.sound.add("mouseover").play();
+    this.sound.add('mouseover').play();
 
     gameState.score += 10;
-    gameState.scoreText.setText("Score: " + gameState.score);
+    gameState.scoreText.setText(`Score: ${gameState.score}`);
     saveScore();
 
     if (gameState.starCoins.countActive(true) === 0) {
-      gameState.starCoins.children.iterate(function (child) {
+      gameState.starCoins.children.iterate((child) => {
         child.enableBody(true, child.x, child.y, true, true);
       });
     }

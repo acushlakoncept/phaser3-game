@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import 'phaser';
 import { config } from './utils/config';
 
-  
-  const game = new Phaser.Game(config);
+// eslint-disable-next-line no-undef
+const game = new Phaser.Game(config);

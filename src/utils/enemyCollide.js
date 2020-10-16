@@ -1,18 +1,19 @@
-import { gameState } from "./gameState";
-import { postLeaderBoardData } from "./leaderboardApi";
+/* eslint-disable import/prefer-default-export */
+import { gameState } from './gameState';
+import { postLeaderBoardData } from './leaderboardApi';
 
 export const checkCollision = (
   context,
   player,
   obj,
   active,
-  objType = null
+  objType = null,
 ) => {
   context.physics.add.overlap(player, obj, () => {
-    context.add.text(player.x, 50, "Game Over!", {
-      fontFamily: "Arial",
+    context.add.text(player.x, 50, 'Game Over!', {
+      fontFamily: 'Arial',
       fontSize: 36,
-      color: "#000000"
+      color: '#000000',
     });
     player.setTint(0xab1f08);
     context.physics.pause();
@@ -21,10 +22,10 @@ export const checkCollision = (
     if (objType == null) {
       obj.move.stop();
     }
-    postLeaderBoardData(gameState.playerName, gameState.score)
+    postLeaderBoardData(gameState.playerName, gameState.score);
     setTimeout(() => {
       context.scene.stop(context.levelKey);
-      context.scene.start("GameOver");
+      context.scene.start('GameOver');
     }, 1500);
   });
 };

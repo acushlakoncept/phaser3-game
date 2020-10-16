@@ -1,36 +1,39 @@
+/* eslint-disable guard-for-in */
 import 'regenerator-runtime';
 
-const apiKey = "i64UOSYgte2pwuH0vZ55";
+const apiKey = 'i64UOSYgte2pwuH0vZ55';
 const URI = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${apiKey}/scores`;
 
 const postLeaderBoardData = async (player, score) => {
   const data = {
     user: player,
-    score: score
+    score,
   };
 
   try {
     const response = await fetch(URI, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
     if (response.ok) {
       const result = await response.json();
       return result;
     }
-    throw new Error("Cant submit request now");
+    throw new Error('Cant submit request now');
   } catch (error) {
     return error;
   }
 };
 
 const rankByScore = (res) => {
-  let sortable = [];
-  for (let user in res) {
+  const sortable = [];
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const user in res) {
     sortable.push([user.name, user.score]);
   }
 
@@ -41,12 +44,12 @@ const rankByScore = (res) => {
 
 const fetchLeaderBoardData = async () => {
   try {
-    const response = await fetch(URI, { mode: "cors" });
+    const response = await fetch(URI, { mode: 'cors' });
     if (response.ok) {
       const data = await response.json();
       return rankByScore(data);
     }
-    throw new Error("Server Down!");
+    throw new Error('Server Down!');
   } catch (error) {
     return error;
   }

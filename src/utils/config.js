@@ -1,30 +1,44 @@
-import { Level1 } from "../scenes/level-one";
-import { Level2 } from "../scenes/level-two";
-import { Level3 } from "../scenes/level-three";
-import { Level4 } from "../scenes/level-four";
-import { Intro } from "../scenes/introScene";
-import { Credits } from "../scenes/creditsScene";
-import { End } from "../scenes/endScene";
-import { GameOver } from "../scenes/gameOverScene";
-import { Player } from "../scenes/playerScene";
-import { Options } from "../scenes/optionScene";
+/* eslint-disable no-undef */
+/* eslint-disable import/no-cycle */
+import { Level1 } from '../scenes/level-one';
+import { Level2 } from '../scenes/level-two';
+import { Level3 } from '../scenes/level-three';
+import { Level4 } from '../scenes/level-four';
+import { Intro } from '../scenes/introScene';
+import { Credits } from '../scenes/creditsScene';
+import { End } from '../scenes/endScene';
+import { GameOver } from '../scenes/gameOverScene';
+import { Player } from '../scenes/playerScene';
+import { Options } from '../scenes/optionScene';
 
+// eslint-disable-next-line import/prefer-default-export
 export const config = {
   type: Phaser.AUTO,
   width: 500,
   height: 600,
   fps: { target: 60 },
-  backgroundColor: "fff",
+  backgroundColor: 'fff',
   physics: {
-    default: "arcade",
+    default: 'arcade',
     arcade: {
       gravity: { y: 800 },
-      enableBody: true
-    }
+      enableBody: true,
+    },
   },
-  parent: "form",
+  parent: 'form',
   dom: {
-    createContainer: true
+    createContainer: true,
   },
-  scene: [Player, Intro, Options, Credits, Level1, Level2, Level3, Level4, GameOver, End]
+  scene: [
+    Player,
+    Intro,
+    Options,
+    Credits,
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    GameOver,
+    End,
+  ],
 };
