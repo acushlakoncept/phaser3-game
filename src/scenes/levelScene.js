@@ -43,17 +43,17 @@ export class Level extends Phaser.Scene {
       this.load.html('nameform', 'assets/inputform.html');
 
 
-      this.load.on('progress', function (value) {
-          console.log(value * 100);
-      });
+      // this.load.on('progress', function (value) {
+      //     console.log(value * 100);
+      // });
                   
-      this.load.on('fileprogress', function (file) {
-          console.log(file.src);
-      });
+      // this.load.on('fileprogress', function (file) {
+      //     console.log(file.src);
+      // });
       
-      this.load.on('complete', function () {
-          console.log('complete');
-      });
+      // this.load.on('complete', function () {
+      //     console.log('complete');
+      // });
     }
   
     create() {
