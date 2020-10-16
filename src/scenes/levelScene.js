@@ -14,7 +14,7 @@ export class Level extends Phaser.Scene {
       this.levelKey = key
       this.nextLevel = {
         'Credits': 'Intro',
-        'Intro': 'Level4',
+        'Intro': 'Level1',
         'Level1': 'Level2',
         'Level2': 'Level3',
         'Level3': 'Level4',
@@ -154,7 +154,11 @@ export class Level extends Phaser.Scene {
         if (gameState.player.y > gameState.bg3.height) {
           this.cameras.main.shake(240, .01, false, function(camera, progress) {
             if (progress > .9) {
-              this.scene.restart(this.levelKey);
+              this.add.text(gameState.player.x, 100, 'Game Over!', { fontFamily: 'Arial', fontSize: 36, color: '#000000' });
+              setTimeout(() => { 
+                this.scene.stop(this.levelKey);
+                this.scene.start('GameOver');
+               }, 1500);
             }
           });
         }

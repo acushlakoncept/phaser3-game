@@ -1,4 +1,4 @@
-import { gameState } from '../utils/gameState';
+import { gameState, saveScore } from '../utils/gameState';
 import { Level } from './levelScene';
 import { mouseOverEffect } from '../utils/mouserover';
 
@@ -26,6 +26,8 @@ export class GameOver extends Level {
         mouseOverEffect(gameState.mainMenu, this)
 
         gameState.replay.on('pointerup', () => {
+            gameState.score = 0
+            saveScore()
             this.scene.stop(this.levelKey);
             this.scene.start('Level1');
         })
