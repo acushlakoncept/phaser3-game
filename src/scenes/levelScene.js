@@ -163,40 +163,7 @@ export class Level extends Phaser.Scene {
 
         });
       }	
-
-      // score += 10;
-      // scoreText.setText("Score: " + score);
-
-      // if (stars.countActive(true) === 0) {
-      //     stars.children.iterate(function (child) {
-      //         child.enableBody(true, child.x, 0, true, true);
-      //     });
-
-          // let x =
-          //     player.x < 400
-          //         ? Phaser.Math.Between(400, 800)
-          //         : Phaser.Math.Between(0, 400);
-
-          // let bomb = bombs.create(x, 16, "bomb");
-          // bomb.setBounce(1);
-          // bomb.setCollideWorldBounds(true);
-          // bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-      // }
   }
 
-  getStar(player, star) {
-		star.disableBody(true, true);
-		// this.score += 1;
-		// this.scoreText.setText('Score: ' + this.score);
-		
-		// if (this.stars.countActive(true) === 0)
-		// {
-		// 	this.stars.children.iterate(function (child) {
-
-		// 		child.enableBody(true, child.x, child.y, true, true);
-
-		// 	});
-		// }			
-	}
 
   }
