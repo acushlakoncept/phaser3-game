@@ -24,7 +24,7 @@ export class LeaderBoard extends Level {
     });
 
     for (let i = 0; i < gameState.board.length; i += 1) {
-      this.add.text(125, 220 + (i * 20), `${i + 1}. ${gameState.board[i][0]} - ${gameState.board[i][1]}`, { fontSize: '15px', fill: '#000000' });    
+      this.add.text(125, 220 + (i * 20), `${i + 1}. ${gameState.board[i][0]} - ${gameState.board[i][1]}`, { fontSize: '15px', fill: '#000000' });
     }
 
     gameState.backButton.setInteractive({ useHandCursor: true });
