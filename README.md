@@ -5,13 +5,13 @@
 
 Implementation of an Adventure Game built with the [Phaser 3](https://phaser.io/phaser3) framework.
 
-In this project I utilize the Phaser 3 framework to build an adventure game with four levels comprising of snowman enemy and bomb at level 4 only. Player acquires points by collecting star coins.
+In this project I utilize the Phaser 3 framework to build an adventure game with four levels comprising of snowman enemy and bomb at level 4 only. The player acquires points by collecting star coins.
 
-I used localstorage to persist player scores as he/she transitions to next level/scene of the game.
-I also used the Leaderboard API to post player's score, displaying the top 10 players on the leaderboard scene.
+I used local storage to persist player scores as he/she transitions to the next level/scene of the game.
+I also used the Leaderboard API to post the player's score, displaying the top 10 players on the leaderboard scene.
 
 ### How to Play
-Player can move the player using left or right arrow keys to move player to left or right respectively. You can use the spacebar or up arrow key for jumping.
+The player can move the player using left or right arrow keys to move the player to left or right respectively. You can use the spacebar or up arrow key for jumping.
 
 ## Built With
 
@@ -49,6 +49,10 @@ Once you've installed the project's dependencies, you can run the project using 
 4. :tada:
 
 Because you are running the project through Webpack Dev Server, any time you make a change to your source code, the browser will automatically refresh with your updated code.
+
+## Testing
+Jest, a JavaScript testing framework was used for testing to ensure correctness of any JavaScript codebase.
+To run the test use: `yarn jest`
 
 ## Building The Project
 To host the project on external server like netlify, you will need to run the webpack build command:
