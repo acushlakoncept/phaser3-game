@@ -99,3 +99,10 @@ Feel free to check the [issues page](https://github.com/acushlakoncept/rpg-game/
 ## Show your support
 
 Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- [Microverse](https://www.microverse.org/)
+- [Phaser](https://phaser.io/)
+- [OpenGameArt](https://opengameart.org/)
+- [Code Academy](https://www.codecademy.com/learn/learn-phaser)
