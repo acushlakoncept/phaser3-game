@@ -4,6 +4,7 @@ import { gameState, saveScore, setCalled } from '../utils/gameState';
 import { Level } from './levelScene';
 import { createAnimations } from '../utils/animations';
 import { mouseOverEffect } from '../utils/mouserover';
+import { fetchLeaderBoardData } from '../utils/leaderboardApi';
 
 export class Intro extends Level {
   constructor() {
@@ -50,6 +51,7 @@ export class Intro extends Level {
     });
 
     gameState.leaderboard.on('pointerup', () => {
+      fetchLeaderBoardData();
       this.scene.stop(this.levelKey);
       this.scene.start('LeaderBoard');
     });

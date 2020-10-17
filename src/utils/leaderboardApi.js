@@ -47,6 +47,7 @@ const rankByScore = (res) => {
   }
   localStorage.setItem('game.board', JSON.stringify(firstTen));
   return firstTen;
+  console.log(firstTen);
 };
 
 const fetchLeaderBoardData = async () => {

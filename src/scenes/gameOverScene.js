@@ -3,7 +3,7 @@
 import { gameState, saveScore, setCalled } from '../utils/gameState';
 import { Level } from './levelScene';
 import { mouseOverEffect } from '../utils/mouserover';
-import { postLeaderBoardData } from '../utils/leaderboardApi';
+import { postLeaderBoardData, fetchLeaderBoardData } from '../utils/leaderboardApi';
 
 export class GameOver extends Level {
   constructor() {
@@ -33,6 +33,7 @@ export class GameOver extends Level {
       gameState.called = true;
       setCalled();
       postLeaderBoardData(gameState.playerName, gameState.score);
+      fetchLeaderBoardData();
     }
 
     gameState.replay = this.add.text(130, 280, '[+] Play Again', {
