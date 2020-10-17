@@ -5,7 +5,6 @@
 import { gameState } from '../utils/gameState';
 import { Level } from './levelScene';
 import { mouseOverEffect } from '../utils/mouserover';
-import { fetchLeaderBoardData } from '../utils/leaderboardApi';
 
 export class LeaderBoard extends Level {
   constructor() {
@@ -24,10 +23,8 @@ export class LeaderBoard extends Level {
       fill: '#000000',
     });
 
-    fetchLeaderBoardData();
-
-    for (let i = 0; i < 10; i += 1) {
-      this.add.text(150, 220 + (i * 20), `${i + 1}. ${gameState.board[i][0]} - ${gameState.board[i][1]}`, { fontSize: '15px', fill: '#000000' });
+    for (let i = 0; i < gameState.board.length; i += 1) {
+      this.add.text(125, 220 + (i * 20), `${i + 1}. ${gameState.board[i][0]} - ${gameState.board[i][1]}`, { fontSize: '15px', fill: '#000000' });    
     }
 
     gameState.backButton.setInteractive({ useHandCursor: true });

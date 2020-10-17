@@ -16,7 +16,7 @@ import { Preload } from '../scenes/preloadScene';
 // eslint-disable-next-line import/prefer-default-export
 export const config = {
   type: Phaser.AUTO,
-  width: 500,
+  width: 600,
   height: 600,
   fps: { target: 60 },
   backgroundColor: 'fff',
