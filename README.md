@@ -5,13 +5,15 @@
 
 Implementation of an Adventure Game built with the [Phaser 3](https://phaser.io/phaser3) framework.
 
-In this project I utilize the Phaser 3 framework to build an adventure game with four levels comprising of snowman enemy and bomb at level 4 only. The player acquires points by collecting star coins.
+In this project, I utilize the Phaser 3 framework to build an adventure game with four levels comprising of snowman enemy and bomb at level 4 only. The player acquires points by collecting star coins.
 
 I used local storage to persist player scores as he/she transitions to the next level/scene of the game.
 I also used the Leaderboard API to post the player's score, displaying the top 10 players on the leaderboard scene.
 
 ### How to Play
 The player can move the player using left or right arrow keys to move the player to left or right respectively. You can use the spacebar or up arrow key for jumping.
+
+![screenshot](./rpg.gif)
 
 ## Built With
 
