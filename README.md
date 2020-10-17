@@ -18,8 +18,8 @@
 Once you've installed the project's dependencies, you can run the project using [Webpack Dev Server](https://github.com/webpack/webpack-dev-server).
 
 1. From your project's directory, run `yarn webpack-dev-server`.
-1. Open up your browser to `http://localhost:8080`.
-1. You should see a web page with a black box that says "Hello Phaser!" in green text. That's our game!
-1. :tada:
+2. Open up your browser to `http://localhost:8080`.
+3. You should see a web page with a black box that says "Hello Phaser!" in green text. That's our game!
+4. :tada:
 
 Because you are running the project through Webpack Dev Server, any time you make a change to your source code, the browser will automatically refresh with your updated code.
