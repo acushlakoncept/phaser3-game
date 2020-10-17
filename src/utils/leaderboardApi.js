@@ -58,10 +58,7 @@ const fetchLeaderBoardData = async () => {
           return `Looks like there was a problem. Status Code: ${
             response.status}`;
         }
-        response.json().then((data) => {
-          rankByScore(data);
-          return data;
-        });
+        response.json().then((data) => rankByScore(data));
       },
     )
     .catch((err) => (('Fetch Error :-S', err)));
