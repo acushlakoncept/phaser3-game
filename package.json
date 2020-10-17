@@ -10,12 +10,17 @@
     "babel-core": "6",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.0.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.5.2",
     "copy-webpack-plugin": "^4.5.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
+    "jest": "^26.5.2",
+    "jest-canvas-mock": "^2.3.0",
     "raw-loader": "^0.5.1",
     "webpack": "^3.0.0",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^2.0.0"
   },
   "dependencies": {
