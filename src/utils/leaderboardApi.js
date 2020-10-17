@@ -1,6 +1,8 @@
 /* eslint-disable guard-for-in */
 import 'regenerator-runtime';
 
+const fetch = require('node-fetch');
+
 const apiKey = 'i64UOSYgte2pwuH0vZ55';
 const URI = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${apiKey}/scores`;
 
@@ -44,23 +46,25 @@ const rankByScore = (res) => {
     firstTen.push(sortable[i]);
   }
   localStorage.setItem('game.board', JSON.stringify(firstTen));
+  return firstTen;
 };
 
-const fetchLeaderBoardData = () => {
-  fetch(URI, { mode: 'cors' })
+const fetchLeaderBoardData = async () => {
+  await fetch(URI, { mode: 'cors' })
     .then(
+      // eslint-disable-next-line consistent-return
       (response) => {
         if (response.status !== 200) {
-          console.log(`Looks like there was a problem. Status Code: ${
-            response.status}`);
-          return;
+          return `Looks like there was a problem. Status Code: ${
+            response.status}`;
         }
-        response.json().then((data) => rankByScore(data));
+        response.json().then((data) => {
+          rankByScore(data);
+          return data;
+        });
       },
     )
-    .catch((err) => {
-      console.log('Fetch Error :-S', err);
-    });
+    .catch((err) => (('Fetch Error :-S', err)));
 };
 
-export { postLeaderBoardData, fetchLeaderBoardData };
+export { postLeaderBoardData, fetchLeaderBoardData, rankByScore };
