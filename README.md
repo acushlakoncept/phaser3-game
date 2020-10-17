@@ -26,9 +26,6 @@ Player can move the player using left or right arrow keys to move player to left
 - [Leaderboard API service](https://www.notion.so/Leaderboard-API-service-24c0c3c116974ac49488d4eb0267ade3) for high scores
 
 ## Live Demo
-[Live Demo Link](## Built With
-
-## Live Demo
 [Play Game on Live Link](https://cush.netlify.app/)
 
 ## Using This Project
