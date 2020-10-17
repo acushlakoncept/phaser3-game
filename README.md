@@ -30,8 +30,6 @@ Player can move the player using left or right arrow keys to move player to left
 
 ## Live Demo
 [Play Game on Live Link](https://cush.netlify.app/)
-)
-
 
 ## Using This Project
 
