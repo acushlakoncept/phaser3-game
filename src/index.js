@@ -1,11 +1,6 @@
+/* eslint-disable no-unused-vars */
 import 'phaser';
+import { config } from './utils/config';
 
-import { SimpleScene } from './scenes/simple-scene';
-
-const gameConfig = {
-  width: 680,
-  height: 400,
-  scene: SimpleScene
-};
-
-new Phaser.Game(gameConfig);
+// eslint-disable-next-line no-undef
+const game = new Phaser.Game(config);
