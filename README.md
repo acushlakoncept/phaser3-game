@@ -58,7 +58,7 @@ To run the test use: `yarn jest`
 
 ## Building The Project
 To host the project on external server like netlify, you will need to run the webpack build command:
-`yarn webpack build`
+`yarn webpack`
 
 
 ### Scenes
